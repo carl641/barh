@@ -64,7 +64,7 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
        border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(11,35,64,.06)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:78px}
 .brand{display:flex;align-items:center;text-decoration:none}
-.brand img{height:56px;width:auto}
+.brand img{height:60px;width:auto}
 .nav-links{list-style:none;display:flex;gap:28px;font-weight:500;font-size:16px;margin-left:auto}
 .nav-links a{text-decoration:none;color:var(--navy);opacity:.85}
 .nav-links a:hover{opacity:1}
@@ -80,7 +80,7 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 
 @media (max-width:900px){
   .nav{height:66px}
-  .brand img{height:44px}
+  .brand img{height:48px}
   .nav .call{font-size:17px}
   .nav-toggle{display:block;order:3}
   .nav-links{
@@ -103,7 +103,7 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .hero-video iframe{position:absolute;top:50%;left:62%;width:100vw;height:56.25vw;
                    min-height:100%;min-width:177.78vh;transform:translate(-50%,-50%);border:0;background:var(--navy)}
 .hero-shade{position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,rgba(11,35,64,.97) 0%,rgba(11,35,64,.9) 28%,rgba(11,35,64,.55) 48%,rgba(11,35,64,0) 68%)}
+  background:linear-gradient(90deg,rgba(11,35,64,1) 0%,rgba(11,35,64,1) 18%,rgba(11,35,64,.94) 32%,rgba(11,35,64,.6) 52%,rgba(11,35,64,0) 74%)}
 .hero h1{font-size:clamp(40px,5.5vw,76px)}
 .hero h1 em{font-style:normal;color:var(--tint)}
 .hero p{margin:24px 0 32px;font-size:20px;max-width:46ch;color:#d9e6f8}
@@ -202,6 +202,6 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 
 @media (max-width:420px){
   :root{--gutter:18px}
-  .brand img{height:38px}
+  .brand img{height:42px}
   .nav .call{font-size:15px;padding-bottom:2px}
 }

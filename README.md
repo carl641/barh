@@ -42,8 +42,8 @@ Search the source for `TODO` — the placeholders are:
   `main.js` intercepts submit and shows an inline confirmation — leads are not
   sent anywhere. Point `action` at the real handler (Jotform, Formspree,
   Netlify Forms, etc.) and `main.js` steps aside automatically.
-- **Logo.** `assets/img/barh-logo.svg` is a placeholder wordmark; drop in the
-  real asset.
+- **Logo.** The header uses the real logo at `assets/img/qt=q_95.webp` (368x200).
+  `assets/img/barh-logo.svg` is the old placeholder wordmark, kept unused.
 - **Photography.** The dock-series and founder tiles are gradient placeholders.
 - **Series / accessories / careers pages.** Those links currently point at the
   quote section.
