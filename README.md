@@ -19,8 +19,9 @@ Any static server works, e.g.:
 python3 -m http.server 8000
 ```
 
-then open <http://localhost:8000>. Asset paths are root-relative, so opening
-`index.html` straight off the filesystem will not load the CSS — use a server.
+then open <http://localhost:8000>. Asset paths are document-relative, so the
+page also renders correctly when opened straight off the filesystem or served
+from a subdirectory (e.g. a GitHub Pages project site).
 
 ## Sections
 
