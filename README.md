@@ -69,11 +69,13 @@ Search the source for `TODO`. In rough order of how much it matters:
 - **Quote form endpoint.** `#quote-form` has no `action`. Until one is set, `main.js` intercepts
   submit and shows an inline confirmation — leads are not sent anywhere. Point `action` at the
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
-- **Photography.** The series tiles and hero art are still line drawings — real photos should
-  replace those `.ph` / `.hero-art` blocks. The two founder portraits in `#about` are real, but
-  they are hot-linked from the Uploadcare CDN (`1cfzkm4ioa.ucarecd.net`) rather than committed to
-  `assets/img/`, because that host is unreachable from the build environment. Download both and
-  switch the two `<img class="ph">` tags to local paths if the site should be self-contained.
+- **Photography.** Real photos are in on the homepage — the three series tiles in `#docks` and the
+  two founder portraits in `#about`. Still line drawings: the hero art on each series page, and the
+  "other two series" compare tiles at the foot of them (`.ph.art` / `.hero-art`).
+- **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
+  (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
+  unreachable from the build environment and the files could not be downloaded. Pull them down and
+  repoint the `<img class="ph">` tags at local paths if the site should be self-contained.
 - **`og:image`** at `assets/img/og-cover.jpg` does not exist yet.
 - **Accessories and careers pages.** Those nav and footer links still point at the quote section.
 - **Logo.** The header uses the real logo at `assets/img/qt=q_95.webp` (368x200).

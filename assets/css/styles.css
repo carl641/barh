@@ -153,6 +153,9 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .series article::before{content:"";display:block;height:5px;background:var(--grad)}
 .series .ph{aspect-ratio:4/3;background:linear-gradient(160deg,#dbe8f8,#9fc2ec);display:grid;place-items:center;
             color:#2b3f45;font-family:var(--display);font-size:18px;font-weight:600;text-align:center;padding:12px}
+/* photo tile: block (not the grid the line art needs), no inset, and contain so a
+   shot keeps its own aspect ratio inside the 4:3 frame rather than being stretched */
+.series img.ph{display:block;width:100%;height:auto;object-fit:contain;padding:0}
 .series .body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1}
 .series dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:15px;margin-bottom:16px}
 .series dt{color:var(--meta)}
