@@ -36,7 +36,7 @@ how a dock gets built → founders → quote form → footer.
 
 **Series pages** all share one structure, so a change to the chrome needs making in all three:
 
-hero (breadcrumb, spec chips, roof line art) → what sets it apart → specifications →
+hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
@@ -44,8 +44,9 @@ Each carries its own `<title>`, meta description, canonical URL and three JSON-L
 already selected.
 
 The roof line art is inline SVG drawn with `stroke="currentColor"`, so the same markup reads
-correctly on the navy hero and on the pale series cards — it is a front elevation, and the
-roofline is what distinguishes the three (hip / gable / arched).
+correctly on dark and on pale backgrounds — it is a front elevation, and the roofline is what
+distinguishes the three (hip / gable / arched). It is still used in the spec aside and in the
+"other two series" compare tiles; the heroes and the homepage tiles now carry photographs.
 
 Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 `styles.css`; change them there rather than in individual rules.
@@ -69,9 +70,9 @@ Search the source for `TODO`. In rough order of how much it matters:
 - **Quote form endpoint.** `#quote-form` has no `action`. Until one is set, `main.js` intercepts
   submit and shows an inline confirmation — leads are not sent anywhere. Point `action` at the
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
-- **Photography.** Real photos are in on the homepage — the three series tiles in `#docks` and the
-  two founder portraits in `#about`. Still line drawings: the hero art on each series page, and the
-  "other two series" compare tiles at the foot of them (`.ph.art` / `.hero-art`).
+- **Photography.** Real photos are in on the homepage (the three series tiles in `#docks`, the two
+  founder portraits in `#about`) and in each series page hero. Still line drawings: the spec-aside
+  art and the "other two series" compare tiles at the foot of each series page (`.art` / `.ph.art`).
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
   (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
   unreachable from the build environment and the files could not be downloaded. Pull them down and
