@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260916`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260917`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -56,8 +56,8 @@ already selected.
 
 The roof line art is inline SVG drawn with `stroke="currentColor"`, so the same markup reads
 correctly on dark and on pale backgrounds — it is a front elevation, and the roofline is what
-distinguishes the three (hip / gable / arched). It is still used in the spec aside and in the
-"other two series" compare tiles; the heroes and the homepage tiles now carry photographs.
+distinguishes the three (hip / gable / arched). The spec aside on each series page is the last
+place it appears — every other tile, hero and card now carries a photograph.
 
 Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 `styles.css`; change them there rather than in individual rules.
@@ -82,9 +82,12 @@ Search the source for `TODO`. In rough order of how much it matters:
   submit and shows an inline confirmation — leads are not sent anywhere. Point `action` at the
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
 - **Photography.** Real photos are in on the homepage (the three series tiles in `#docks`, the two
-  founder portraits in `#about`), in each series page hero, and throughout the Premier page. Still
-  line drawings: the spec-aside art and the "other two series" compare tiles at the foot of each
-  series page (`.art` / `.ph.art`), and every photo slot on the Timber and Aluminum pages.
+  founder portraits in `#about`), in each series page hero, in the "other two series" compare cards
+  at the foot of every series page, and throughout the Premier page. The three homepage series
+  photos do double duty in those compare cards, so there is one image per series to swap if a
+  better shot arrives. Still line drawings: the spec aside on each series page (`.art`). Still
+  without photography of their own: the Timber and Aluminum body sections, which have no
+  equivalent of the Premier detail trio, gallery or slip pair.
 - **Premier photo captions and alt text.** The detail trio is captioned "Hip roof", "Rot-free
   decking" and "Walkway", read off the filenames Bar H supplied rather than off the photographs,
   which were not viewable from the build environment. All the alt text on this page was written

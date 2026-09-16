@@ -348,8 +348,6 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 
 /* ---------- compare (reuses the homepage series cards) ---------- */
 .series.two{grid-template-columns:repeat(2,1fr)}
-.series .ph.art{color:var(--navy);padding:26px}
-.series .ph.art svg{width:100%;max-width:300px;opacity:.9}
 @media (max-width:900px){.series.two{grid-template-columns:1fr}}
 
 @media (max-width:420px){
