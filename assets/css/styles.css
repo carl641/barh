@@ -312,14 +312,18 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
            border:1px solid var(--line);border-radius:3px}
 .shots figcaption{margin-top:10px;font-family:var(--display);font-weight:600;
                   font-size:16px;letter-spacing:.02em;color:var(--meta)}
+/* the trio reads as one strip, so it holds three across at every width and
+   tightens its gap rather than wrapping a lone third photo onto its own row */
 .shots.trio{grid-template-columns:repeat(3,1fr)}
 .shots.trio img{aspect-ratio:1/1}
 .shots.pair{grid-template-columns:repeat(2,1fr)}
 .shots.pair img{aspect-ratio:4/3}
 .shots.quad{grid-template-columns:repeat(4,1fr)}
 .shots.quad img{aspect-ratio:4/3}
-@media (max-width:880px){.shots.quad,.shots.trio{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.shots.quad,.shots.trio,.shots.pair{grid-template-columns:1fr}}
+@media (max-width:880px){.shots.quad{grid-template-columns:1fr 1fr}.shots.trio{gap:16px}}
+@media (max-width:560px){.shots.quad,.shots.pair{grid-template-columns:1fr}
+                         .shots.trio{gap:10px}
+                         .shots.trio figcaption{font-size:14px;margin-top:8px}}
 
 /* ---------- options ---------- */
 .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:40px}
