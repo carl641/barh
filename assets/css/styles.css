@@ -257,6 +257,9 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 .art svg{display:block;width:100%;height:auto}
 .hero-art{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
           border-radius:6px;padding:26px 26px 20px;color:#cfe1f8;margin:0}
+/* hero photo: same 4:3 frame and zoom-to-fill as the homepage series tiles, matted
+   inside the translucent panel the line art used */
+.hero-art img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:3px}
 .hero-art figcaption{margin-top:14px;font-size:14px;color:#bcd2ee;text-align:center}
 @media (max-width:900px){
   .page-hero{padding:40px 0 48px}
