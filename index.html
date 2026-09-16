@@ -34,7 +34,17 @@
     </button>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="#docks">Docks</a></li>
+      <li class="has-sub">
+        <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-docks">Docks
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
+        </button>
+        <ul class="sub" id="sub-docks">
+          <li><a href="#docks">All three series</a></li>
+          <li><a href="premier-series-docks.html">Premier Series <small>Steel · hip roof</small></a></li>
+          <li><a href="timber-series-docks.html">Timber Series <small>Steel · gable roof</small></a></li>
+          <li><a href="aluminum-series.html">Aluminum Series <small>Aluminum · corrosion resistant</small></a></li>
+        </ul>
+      </li>
       <li><a href="#areas">Where we build</a></li>
       <li><a href="#process">How it works</a></li>
       <li><a href="#about">About</a></li>
@@ -77,30 +87,66 @@
     <p class="lede">Steel with a hip roof, steel with a gable roof, or aluminum. Pick the series that fits your shoreline.</p>
     <div class="series">
       <article>
-        <div class="ph" role="img" aria-label="Premier Series dock photo">Premier Series photo</div>
+        <div class="ph art" role="presentation">
+          <svg viewBox="0 0 480 300" fill="none" stroke="currentColor" stroke-width="6"
+               stroke-linejoin="round" stroke-linecap="round" role="img" aria-labelledby="art-premier-series-docks">
+            <title id="art-premier-series-docks">Front elevation of a Premier Series dock: a hip roof sloping on all four sides, carried on steel posts over a covered slip.</title>
+            <path d="M40 118 L146 52 H334 L440 118 Z"/>
+            <path d="M72 118 V228 M408 118 V228"/>
+            <path d="M30 228 h420 v10 H30 Z"/>
+            <path d="M62 238 h100 v26 H62 Z"/>
+            <path d="M318 238 h100 v26 H318 Z"/>
+            <path d="M14 284 q28 -13 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"
+                  stroke-width="5" opacity=".5"/>
+          </svg>
+        </div>
         <div class="body">
           <h3>Premier Series</h3>
           <dl><dt>Frame</dt><dd>Steel</dd><dt>Roof</dt><dd>Hip roof</dd></dl>
           <p>Our premium steel dock. The distinctive hip roof enhances its appearance and reflects the craftsmanship that goes into every Premier build.</p>
-          <a href="#quote">Premier Series details</a>
+          <a href="premier-series-docks.html">Premier Series details</a>
         </div>
       </article>
       <article>
-        <div class="ph" role="img" aria-label="Timber Series dock photo">Timber Series photo</div>
+        <div class="ph art" role="presentation">
+          <svg viewBox="0 0 480 300" fill="none" stroke="currentColor" stroke-width="6"
+               stroke-linejoin="round" stroke-linecap="round" role="img" aria-labelledby="art-timber-series-docks">
+            <title id="art-timber-series-docks">Front elevation of a Timber Series dock: a gable roof on steel tube trusses, carried on steel posts over a covered slip.</title>
+            <path d="M40 118 L240 44 L440 118 Z"/>
+            <path d="M72 118 V228 M408 118 V228"/>
+            <path d="M30 228 h420 v10 H30 Z"/>
+            <path d="M62 238 h100 v26 H62 Z"/>
+            <path d="M318 238 h100 v26 H318 Z"/>
+            <path d="M14 284 q28 -13 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"
+                  stroke-width="5" opacity=".5"/>
+          </svg>
+        </div>
         <div class="body">
           <h3>Timber Series</h3>
           <dl><dt>Frame</dt><dd>Fully fabricated steel tube trusses</dd><dt>Roof</dt><dd>Gable roof</dd></dl>
           <p>Our standard for gable-roof docks and a top choice among buyers. Fully fabricated steel tube trusses deliver exceptional durability with a bold, timeless design.</p>
-          <a href="#quote">Timber Series details</a>
+          <a href="timber-series-docks.html">Timber Series details</a>
         </div>
       </article>
       <article>
-        <div class="ph" role="img" aria-label="Aluminum Series dock photo">Aluminum Series photo</div>
+        <div class="ph art" role="presentation">
+          <svg viewBox="0 0 480 300" fill="none" stroke="currentColor" stroke-width="6"
+               stroke-linejoin="round" stroke-linecap="round" role="img" aria-labelledby="art-aluminum-series">
+            <title id="art-aluminum-series">Front elevation of an Aluminum Series dock: a low arched roof on aluminum posts over a covered slip.</title>
+            <path d="M40 118 Q240 28 440 118 Z"/>
+            <path d="M72 118 V228 M408 118 V228"/>
+            <path d="M30 228 h420 v10 H30 Z"/>
+            <path d="M62 238 h100 v26 H62 Z"/>
+            <path d="M318 238 h100 v26 H318 Z"/>
+            <path d="M14 284 q28 -13 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"
+                  stroke-width="5" opacity=".5"/>
+          </svg>
+        </div>
         <div class="body">
           <h3>Aluminum Series</h3>
           <dl><dt>Frame</dt><dd>Custom-engineered extruded aluminum</dd><dt>Finish</dt><dd>Superior corrosion resistance</dd></dl>
           <p>Distinctive styling, superior corrosion resistance, and custom-engineered extruded components for an unmatched fit and finish.</p>
-          <a href="#quote">Aluminum Series details</a>
+          <a href="aluminum-series.html">Aluminum Series details</a>
         </div>
       </article>
     </div>
@@ -201,8 +247,9 @@
       <h2>Get a quote</h2>
       <p>Tell us where the property is and which series you're interested in, and we'll be in touch.</p>
       <div class="contact">
-        <!-- TODO: replace with the real phone number and email from barhsolutions.com -->
-        <a href="tel:+12700000000">(270) 000-0000</a><br>
+        <!-- TODO: confirm against barhsolutions.com/contact - recovered from search results, not the live page -->
+        <a href="tel:+12707482525">(270) 748-2525</a> &middot; Jake Bartlett<br>
+        <a href="tel:+12708695580">(270) 869-5580</a> &middot; Tristan Hagan<br>
         <a href="mailto:info@barhsolutions.com">info@barhsolutions.com</a><br>
         Henderson County, Kentucky
       </div>
@@ -255,6 +302,11 @@
       <div>
         <h4>Bar H Solutions</h4>
         <p>Steel and aluminum boat docks. Based in Henderson County, Kentucky.</p>
+        <ul>
+          <li><a href="premier-series-docks.html">Premier Series</a></li>
+          <li><a href="timber-series-docks.html">Timber Series</a></li>
+          <li><a href="aluminum-series.html">Aluminum Series</a></li>
+        </ul>
       </div>
       <div>
         <h4>Kentucky Lake &amp; Barkley</h4>

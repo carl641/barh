@@ -35,6 +35,44 @@
     else if (wide.addListener) wide.addListener(onWide);
   }
 
+  /* ---------- series dropdown ----------
+     CSS opens the panel on hover; this adds click, touch and keyboard. */
+  var subToggles = document.querySelectorAll('.sub-toggle');
+
+  var closeSubs = function (except) {
+    Array.prototype.forEach.call(subToggles, function (btn) {
+      if (btn !== except) btn.setAttribute('aria-expanded', 'false');
+    });
+  };
+
+  Array.prototype.forEach.call(subToggles, function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      closeSubs(btn);
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  });
+
+  if (subToggles.length) {
+    // Leaving the panel by any route collapses it.
+    Array.prototype.forEach.call(document.querySelectorAll('.sub a'), function (a) {
+      a.addEventListener('click', function () { closeSubs(); });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.has-sub')) closeSubs();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var open = document.querySelector('.sub-toggle[aria-expanded="true"]');
+      if (open) {
+        closeSubs();
+        open.focus();
+      }
+    });
+  }
+
   /* ---------- quote form ----------
      Placeholder handler: until `action` points at a real endpoint, confirm
      inline rather than posting the lead into the void. */
