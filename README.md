@@ -44,13 +44,22 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
-Premier and Timber carry photography Aluminum does not yet have — a detail strip inside "what sets
-it apart", a `#gallery` section of finished builds between the specs and the slip layouts, and a
-labelled single/double slip pair under the layout cards. All of them use the one `.shots` grid,
-whose column count and frame shape are separate modifiers: `shots cols-3 square strip` is the
-detail row, `shots cols-4 wide` Premier's four-shot gallery, `shots cols-3 wide` Timber's
-three-shot one, `shots cols-2 wide` the slip pair. Aluminum can take the same treatment by
-dropping in the same markup once its photos exist.
+All three also carry photography in the same three places — a detail strip inside "what sets it
+apart", a `#gallery` section of finished builds between the specs and the slip layouts, and a
+labelled single/double slip pair under the layout cards — built from the one `.shots` grid, whose
+column count and frame shape are separate modifiers:
+
+| row | markup |
+| --- | --- |
+| detail strip (all three) | `shots cols-3 square strip` |
+| Premier gallery, four shots | `shots cols-4 wide` |
+| Timber gallery, three shots | `shots cols-3 wide` |
+| Aluminum gallery, six shots | `shots cols-3 square` |
+| slip pair (all three) | `shots cols-2 wide` |
+
+Pick the frame shape from what the set mostly is: `wide` is 4:3, `square` is 1:1, and a shot that
+does not match its frame is centre-cropped to fill it. `strip` holds its columns at every width
+instead of wrapping.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
@@ -85,16 +94,15 @@ Search the source for `TODO`. In rough order of how much it matters:
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
 - **Photography.** Real photos are in on the homepage (the three series tiles in `#docks`, the two
   founder portraits in `#about`), in each series page hero, in the "other two series" compare cards
-  at the foot of every series page, and throughout the Premier and Timber pages. The three homepage
+  at the foot of every series page, and throughout all three series pages. The three homepage
   series photos do double duty in those compare cards, so there is one image per series to swap if
-  a better shot arrives. Still line drawings: the spec aside on each series page (`.art`). Still
-  without photography of its own: the Aluminum page body, which has no equivalent of the detail
-  strip, gallery or slip pair.
-- **Premier and Timber photo captions and alt text.** The detail strips are captioned "Hip roof",
-  "Steel tube truss frame", "Rot-free
-  decking" and "Walkway", read off the filenames Bar H supplied rather than off the photographs,
-  which were not viewable from the build environment. All the alt text on this page was written
-  the same way. Someone who can see the images should confirm both.
+  a better shot arrives. Still line drawings: the spec aside on each series page (`.art`), now the
+  only place any remain.
+- **Series photo captions and alt text.** The detail strips are captioned from the filenames Bar H
+  supplied — "Hip roof", "Steel tube truss frame", "Extruded aluminum frame", "Durability",
+  "Rot-free decking", "Walkway" — rather than from the photographs, which were not viewable from
+  the build environment. Every piece of alt text across the three pages was written the same way.
+  Someone who can see the images should confirm both.
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
   (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
   unreachable from the build environment and the files could not be downloaded. Pull them down and
