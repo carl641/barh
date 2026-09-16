@@ -17,6 +17,11 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260916`). There is no build step
+to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
+deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
+whenever you edit the CSS or JS**, or returning visitors keep the old layout.
+
 ## Running locally
 
 Any static server works, e.g.:
