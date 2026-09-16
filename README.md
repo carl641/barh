@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260917`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260918`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -44,11 +44,13 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
-The Premier page is the exception: it also carries photography the other two do not yet have — a
-detail trio inside "what sets it apart", a `#gallery` section of finished builds between the specs
-and the slip layouts, and a labelled single/double slip pair under the layout cards. All three use
-the one `.shots` grid (`.trio` / `.pair` / `.quad`), so Timber and Aluminum can take the same
-treatment by dropping in the same markup once their photos exist.
+Premier and Timber carry photography Aluminum does not yet have — a detail strip inside "what sets
+it apart", a `#gallery` section of finished builds between the specs and the slip layouts, and a
+labelled single/double slip pair under the layout cards. All of them use the one `.shots` grid,
+whose column count and frame shape are separate modifiers: `shots cols-3 square strip` is the
+detail row, `shots cols-4 wide` Premier's four-shot gallery, `shots cols-3 wide` Timber's
+three-shot one, `shots cols-2 wide` the slip pair. Aluminum can take the same treatment by
+dropping in the same markup once its photos exist.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
@@ -83,12 +85,13 @@ Search the source for `TODO`. In rough order of how much it matters:
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
 - **Photography.** Real photos are in on the homepage (the three series tiles in `#docks`, the two
   founder portraits in `#about`), in each series page hero, in the "other two series" compare cards
-  at the foot of every series page, and throughout the Premier page. The three homepage series
-  photos do double duty in those compare cards, so there is one image per series to swap if a
-  better shot arrives. Still line drawings: the spec aside on each series page (`.art`). Still
-  without photography of their own: the Timber and Aluminum body sections, which have no
-  equivalent of the Premier detail trio, gallery or slip pair.
-- **Premier photo captions and alt text.** The detail trio is captioned "Hip roof", "Rot-free
+  at the foot of every series page, and throughout the Premier and Timber pages. The three homepage
+  series photos do double duty in those compare cards, so there is one image per series to swap if
+  a better shot arrives. Still line drawings: the spec aside on each series page (`.art`). Still
+  without photography of its own: the Aluminum page body, which has no equivalent of the detail
+  strip, gallery or slip pair.
+- **Premier and Timber photo captions and alt text.** The detail strips are captioned "Hip roof",
+  "Steel tube truss frame", "Rot-free
   decking" and "Walkway", read off the filenames Bar H supplied rather than off the photographs,
   which were not viewable from the build environment. All the alt text on this page was written
   the same way. Someone who can see the images should confirm both.

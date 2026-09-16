@@ -303,27 +303,31 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:2px;background:var(--blue)}
 @media (max-width:900px){.configs{grid-template-columns:1fr}}
 
-/* ---------- photo rows (detail trio, slip layouts, gallery) ----------
-   One frame, three widths. Every shot zooms to fill its cell, same as the
-   homepage tiles and the page heroes, so a mixed-ratio set still lines up. */
+/* ---------- photo rows (detail strip, slip layouts, gallery) ----------
+   Column count and frame shape are separate modifiers, so a row is written as
+   `shots cols-3 wide` and any combination is available. Every shot zooms to
+   fill its cell, same as the homepage tiles and the page heroes, so a
+   mixed-ratio set still lines up. */
 .shots{display:grid;gap:24px;margin-top:40px}
 .shots figure{margin:0}
 .shots img{width:100%;height:auto;object-fit:cover;background:var(--tint);
            border:1px solid var(--line);border-radius:3px}
 .shots figcaption{margin-top:10px;font-family:var(--display);font-weight:600;
                   font-size:16px;letter-spacing:.02em;color:var(--meta)}
-/* the trio reads as one strip, so it holds three across at every width and
-   tightens its gap rather than wrapping a lone third photo onto its own row */
-.shots.trio{grid-template-columns:repeat(3,1fr)}
-.shots.trio img{aspect-ratio:1/1}
-.shots.pair{grid-template-columns:repeat(2,1fr)}
-.shots.pair img{aspect-ratio:4/3}
-.shots.quad{grid-template-columns:repeat(4,1fr)}
-.shots.quad img{aspect-ratio:4/3}
-@media (max-width:880px){.shots.quad{grid-template-columns:1fr 1fr}.shots.trio{gap:16px}}
-@media (max-width:560px){.shots.quad,.shots.pair{grid-template-columns:1fr}
-                         .shots.trio{gap:10px}
-                         .shots.trio figcaption{font-size:14px;margin-top:8px}}
+.shots.cols-2{grid-template-columns:repeat(2,1fr)}
+.shots.cols-3{grid-template-columns:repeat(3,1fr)}
+.shots.cols-4{grid-template-columns:repeat(4,1fr)}
+.shots.square img{aspect-ratio:1/1}
+.shots.wide img{aspect-ratio:4/3}
+/* `strip` marks a row that reads as one thing — the detail shots under a
+   feature grid. It holds its columns at every width and tightens its gap
+   rather than wrapping a lone photo onto a row of its own. */
+@media (max-width:880px){.shots.cols-4{grid-template-columns:1fr 1fr}
+                         .shots.strip{gap:16px}}
+@media (max-width:560px){.shots.cols-2,.shots.cols-3:not(.strip),
+                         .shots.cols-4{grid-template-columns:1fr}
+                         .shots.strip{gap:10px}
+                         .shots.strip figcaption{font-size:14px;margin-top:8px}}
 
 /* ---------- options ---------- */
 .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:40px}
