@@ -303,6 +303,24 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:2px;background:var(--blue)}
 @media (max-width:900px){.configs{grid-template-columns:1fr}}
 
+/* ---------- photo rows (detail trio, slip layouts, gallery) ----------
+   One frame, three widths. Every shot zooms to fill its cell, same as the
+   homepage tiles and the page heroes, so a mixed-ratio set still lines up. */
+.shots{display:grid;gap:24px;margin-top:40px}
+.shots figure{margin:0}
+.shots img{width:100%;height:auto;object-fit:cover;background:var(--tint);
+           border:1px solid var(--line);border-radius:3px}
+.shots figcaption{margin-top:10px;font-family:var(--display);font-weight:600;
+                  font-size:16px;letter-spacing:.02em;color:var(--meta)}
+.shots.trio{grid-template-columns:repeat(3,1fr)}
+.shots.trio img{aspect-ratio:1/1}
+.shots.pair{grid-template-columns:repeat(2,1fr)}
+.shots.pair img{aspect-ratio:4/3}
+.shots.quad{grid-template-columns:repeat(4,1fr)}
+.shots.quad img{aspect-ratio:4/3}
+@media (max-width:880px){.shots.quad,.shots.trio{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.shots.quad,.shots.trio,.shots.pair{grid-template-columns:1fr}}
+
 /* ---------- options ---------- */
 .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:40px}
 .opts > div{background:#fff;border:1px solid var(--line);padding:22px 20px}

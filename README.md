@@ -39,6 +39,12 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
+The Premier page is the exception: it also carries photography the other two do not yet have — a
+detail trio inside "what sets it apart", a `#gallery` section of finished builds between the specs
+and the slip layouts, and a labelled single/double slip pair under the layout cards. All three use
+the one `.shots` grid (`.trio` / `.pair` / `.quad`), so Timber and Aluminum can take the same
+treatment by dropping in the same markup once their photos exist.
+
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
 already selected.
@@ -71,8 +77,13 @@ Search the source for `TODO`. In rough order of how much it matters:
   submit and shows an inline confirmation — leads are not sent anywhere. Point `action` at the
   real handler (Jotform, Formspree, Netlify Forms, etc.) and `main.js` steps aside automatically.
 - **Photography.** Real photos are in on the homepage (the three series tiles in `#docks`, the two
-  founder portraits in `#about`) and in each series page hero. Still line drawings: the spec-aside
-  art and the "other two series" compare tiles at the foot of each series page (`.art` / `.ph.art`).
+  founder portraits in `#about`), in each series page hero, and throughout the Premier page. Still
+  line drawings: the spec-aside art and the "other two series" compare tiles at the foot of each
+  series page (`.art` / `.ph.art`), and every photo slot on the Timber and Aluminum pages.
+- **Premier photo captions and alt text.** The detail trio is captioned "Hip roof", "Rot-free
+  decking" and "Walkway", read off the filenames Bar H supplied rather than off the photographs,
+  which were not viewable from the build environment. All the alt text on this page was written
+  the same way. Someone who can see the images should confirm both.
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
   (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
   unreachable from the build environment and the files could not be downloaded. Pull them down and
