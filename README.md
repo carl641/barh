@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261005`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261006`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -174,13 +174,15 @@ Search the source for `TODO`. In rough order of how much it matters:
   series photos do double duty in those compare cards, so there is one image per series to swap if
   a better shot arrives. Still line drawings: the spec aside on each series page (`.art`), now the
   only place any remain.
-- **Timber's feature photographs do not match its headings.** This matters more now than it did.
-  While the shots sat in a captioned strip the caption named each one; in the accordion a shot
-  opens directly under a heading, and on Timber that heading is the reconstruction rather than Bar
-  H's words. "The gable earns its keep" opens onto rot-free decking, and "Bold and timeless on the
-  water" onto a walkway. Aluminum's three were reordered and do line up — rust/rot-free,
-  extrusion/extruded frame, Flotation Systems/durability. Paste Timber's live copy and its section
-  can be corrected the way Premier's was.
+- **Two edits to Bar H's own Timber copy, both worth confirming.** Their live Rot-Free Construction
+  paragraph reads "our **Premier** Series Dock is constructed without the use of lumber … when you
+  choose **Premier**, you get it!" — on the Timber page. It looks like the paragraph was copied
+  across from Premier and the name never changed. Both say Timber here. The Decorative Walkway
+  paragraph also reads "truss and and tube frame walkways"; the doubled word is dropped.
+- **Aluminum is still the reconstruction.** Its `#built` headings are not Bar H's words, and its
+  three shots were reordered to sit with the headings that come closest — rust with rot-free,
+  extrusion with the extruded frame, Flotation Systems with durability. It has no confirmed prices
+  either. Paste its live copy and it can be corrected the way Premier and Timber were.
 - **Alt text everywhere was written without seeing the images**, which the build environment cannot
   reach. Someone who can see them should read it through.
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
@@ -198,10 +200,12 @@ The site itself was unreachable from the build environment, so the three series 
 written from search-engine indexes: the headline sentence on each was real, the supporting copy
 around it was not.
 
-Premier has since been corrected against the live page. Its `#built` section carries the real
-"Standard features" — Hip Roof, Decorative Walkway, Rot-Free Construction — in Bar H's own words,
-and both starting prices ($38,999 single slip, $46,999 double slip) are confirmed, as is the
-closing mission statement under the slip cards.
+Premier and Timber have since been corrected against the live pages. Each `#built` carries the real
+"Standard features" in Bar H's own words — Hip Roof, Decorative Walkway, Rot-Free Construction on
+Premier; Timber Frame Truss Style, Decorative Walkway, Rot-Free Construction on Timber — and on both
+the three photographs now sit under the headings that name them. Both sets of starting prices are
+confirmed ($38,999 / $46,999 on Premier, $34,999 / $42,999 on Timber), as is the closing mission
+statement under the slip cards.
 
 The invented third "Multi-slip" layout card is gone from all three pages, because the live site
 prices single and double slip only. Two passing mentions of larger builds survive elsewhere on each
