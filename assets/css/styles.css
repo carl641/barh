@@ -301,6 +301,11 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs .from{font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);margin-top:8px}
 .configs .from b{display:block;font-size:14px;font-weight:600;letter-spacing:.1em;
                  text-transform:uppercase;color:var(--meta);margin-bottom:-2px}
+/* the layout shot sits in the card, above its description — the card's own
+   <h3> names it, so it needs no caption of its own */
+.configs .slip-shot{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
+                    background:var(--tint);border:1px solid var(--line);
+                    border-radius:3px;margin:16px 0 4px}
 .configs > article > p{font-size:16px;color:var(--muted);margin-top:8px}
 .configs ul{list-style:none;font-size:16px;color:var(--muted);margin-top:14px}
 .configs li{padding:4px 0 4px 22px;position:relative}
