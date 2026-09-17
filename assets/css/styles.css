@@ -275,18 +275,23 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 @media (max-width:880px){.features{grid-template-columns:1fr 1fr;gap:26px}}
 
 /* ---------- standard-feature shots ----------
-   One frame under the feature grid, sharing the rotator's stacked cross-fade.
-   The feature whose shot is showing keeps its blue rule and the rest fade to
-   the hairline, which is what tells you whose shot it is — so no shot needs a
-   name printed under it. `is-linked` is added by main.js, so with no
-   JavaScript all three rules stay blue and the first shot simply sits there. */
-.feature-shots{max-width:440px;margin:44px auto 0}
-.feature-shots .rotator-frame{aspect-ratio:1/1}
-.features > div{transition:border-color .3s ease}
-.features h3{transition:color .3s ease}
-.features.is-linked > div{border-top-color:var(--line)}
-.features.is-linked > div.is-lit{border-top-color:var(--blue)}
-.features.is-linked > div.is-lit h3{color:var(--blue)}
+   Each feature keeps its own shot, collapsed to nothing until that feature is
+   hovered, when it slides down beneath the copy. The 0fr/1fr row is what makes
+   it slide to the shot's real height rather than to a guessed maximum. Pure
+   CSS, so it needs no JavaScript — and where there is no pointer to hover
+   with, the shots are simply always down. */
+.features .shot{display:grid;grid-template-rows:0fr;overflow:hidden;margin-top:0;
+                transition:grid-template-rows .45s ease,margin-top .45s ease}
+.features .shot img{min-height:0;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
+                    background:var(--tint);border-radius:3px;opacity:0;transition:opacity .4s ease}
+.features > div:hover .shot,
+.features > div:focus-within .shot{grid-template-rows:1fr;margin-top:20px}
+.features > div:hover .shot img,
+.features > div:focus-within .shot img{opacity:1}
+@media (hover:none){
+  .features .shot{grid-template-rows:1fr;margin-top:20px}
+  .features .shot img{opacity:1}
+}
 
 /* ---------- feature rows ----------
    Each standard feature is one passage: its shot beside its copy, sides
