@@ -394,12 +394,13 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 
 /* ---------- slip configurations ---------- */
 .price-note{margin-top:18px}
-.configs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:40px}
-.configs article{background:#fff;border:1px solid var(--line);padding:26px 24px;display:flex;
-                 flex-direction:column;overflow:hidden;
-                 transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
-.configs article:hover{transform:translateY(-4px);border-color:var(--sky);
-                       box-shadow:0 14px 34px rgba(11,35,64,.13)}
+/* One layout above the other, each a wide band with its shot beside the copy.
+   Nothing moves on hover: these are not links, and a card that lifts under the
+   pointer reads as one. */
+.configs{display:grid;gap:28px;margin-top:40px}
+.configs article{background:#fff;border:1px solid var(--line);overflow:hidden;
+                 display:grid;grid-template-columns:minmax(0,38%) minmax(0,1fr);align-items:stretch}
+.configs .slip-body{padding:30px 34px;display:flex;flex-direction:column;justify-content:center}
 .configs .slips{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;
                 color:var(--blue);font-weight:600;margin-bottom:6px}
 .configs h3{font-size:26px}
@@ -407,20 +408,18 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs .from{font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);margin-top:8px}
 .configs .from b{display:block;font-size:14px;font-weight:600;letter-spacing:.1em;
                  text-transform:uppercase;color:var(--meta);margin-bottom:-2px}
-/* the layout shot leads the card: negative margins pull it out of the card's
-   padding so it runs edge to edge, flush with the top border. The card's own
-   <h3> names it, so it carries no caption. */
-.configs .slip-shot{width:calc(100% + 48px);max-width:none;height:auto;aspect-ratio:4/3;
-                    object-fit:cover;background:var(--tint);margin:-26px -24px 22px;
-                    transition:transform .5s ease}
-.configs article:hover .slip-shot{transform:scale(1.045)}
-.configs > article > p{font-size:16px;color:var(--muted);margin-top:8px}
+/* the shot fills its whole column, edge to edge — the card's own <h3> names
+   it, so it carries no caption */
+.configs .slip-shot{width:100%;height:100%;max-width:none;object-fit:cover;background:var(--tint);margin:0}
+.configs .slip-body > p{font-size:16px;color:var(--muted);margin-top:8px}
 .configs ul{list-style:none;font-size:16px;color:var(--muted);margin-top:14px}
 .configs li{padding:4px 0 4px 22px;position:relative}
 .configs li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:2px;background:var(--blue)}
-/* hold two columns well past the usual 900px break: stacked, a card runs the
-   full width and its lead shot would tower over the copy beneath it */
-@media (max-width:640px){.configs{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .configs article{grid-template-columns:1fr}
+  .configs .slip-shot{aspect-ratio:4/3;height:auto}
+  .configs .slip-body{padding:24px 22px 26px}
+}
 /* closing statement under the pricing cards */
 .mission{max-width:64ch;margin:44px auto 0;text-align:center;font-size:17px;color:var(--muted)}
 
@@ -472,8 +471,35 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .faq p + p{margin-top:-8px}
 
 /* ---------- compare (reuses the homepage series cards) ---------- */
-.series.two{grid-template-columns:repeat(2,1fr)}
-@media (max-width:900px){.series.two{grid-template-columns:1fr}}
+/* Two other series and this one's photographs, in one row of three. The two
+   series cards shrink to make room; the photos card is deliberately unlike
+   them — gradient rather than white, no shot of its own, and a link — so the
+   row reads as "these two elsewhere, those ones here" rather than three
+   equivalent things. */
+.series.compare{grid-template-columns:repeat(3,1fr);gap:24px}
+.series.compare .body{padding:18px 18px 22px}
+.series.compare h3{font-size:22px}
+.series.compare dl{font-size:14px;gap:3px 12px;margin-bottom:12px}
+.series.compare p{font-size:15px;margin-bottom:14px}
+.series.compare a{font-size:17px}
+
+/* scoped under .series so these beat `.series article`, which sets the white
+   card background and the border these are overriding */
+.series .to-gallery{background:var(--grad);border-color:transparent;color:#fff}
+.series .to-gallery::before{display:none}
+.series .to-gallery a{display:flex;flex-direction:column;gap:8px;height:100%;padding:28px 24px;
+                      border:0;color:inherit;text-decoration:none;margin:0;font-family:var(--body);
+                      font-size:inherit;font-weight:400}
+.series .to-gallery .tag{font-family:var(--display);font-size:13px;font-weight:600;
+                         letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.series .to-gallery h3{color:#fff;margin-bottom:2px}
+.series .to-gallery p{color:#d9e6f8;flex:1;margin:0}
+.series .to-gallery .go{font-family:var(--display);font-weight:600;font-size:18px;color:#fff;
+                        border-bottom:2px solid rgba(255,255,255,.55);align-self:start;
+                        padding-bottom:2px;transition:border-color .25s ease}
+.series .to-gallery a:hover .go{border-bottom-color:#fff}
+
+@media (max-width:900px){.series.compare{grid-template-columns:1fr}}
 
 @media (max-width:420px){
   :root{--gutter:18px}

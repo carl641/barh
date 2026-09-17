@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261001`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261002`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -117,15 +117,21 @@ does not match its frame is centre-cropped to fill it. `strip` holds its columns
 instead of wrapping. `.shots.cols-2` is currently unused but kept, so the modifier set has no gap
 in it.
 
-The slip layout shots are not a `.shots` row. Each leads its own card as `img.slip-shot`: negative
-margins pull it out of the card's padding so it runs edge to edge, flush with the top border, above
-the eyebrow. It carries no caption, because the card's `<h3>` already names it. The card lifts and
-the shot scales slightly on hover; the stylesheet's global `prefers-reduced-motion` rule collapses
-both to nothing for anyone who asks for that.
+The slip layout shots are not a `.shots` row. `#configs` holds two bands, single and double slip,
+stacked one above the other, each with its `img.slip-shot` filling a 38% column and the copy in a
+`.slip-body` beside it. A shot carries no caption, because the band's `<h3>` already names it.
 
-`#configs` holds two cards, single and double slip, matching what the live site prices. They keep
-two columns down to 640px rather than the usual 900px — stacked, a card runs the full content width
-and its lead shot would tower over the copy beneath it.
+Nothing moves on hover. These are not links, and a card that lifts or zooms under the pointer reads
+as one — which is why the earlier hover treatment came off. Below 760px each band stacks its shot
+above its copy.
+
+The compare row at the foot of each page is three columns, not two: the two other series, plus this
+page's own photographs. `.to-gallery` is deliberately unlike the two beside it — the brand gradient
+rather than white, no shot of its own, no spec list, and the whole card is a link — so the row
+reads as "those two elsewhere, these ones here" rather than three equivalent things. Its rules are
+scoped under `.series` so they outrank `.series article`, which sets the white card background the
+gradient replaces. It points at `#gallery` on Timber and Aluminum; Premier has no gallery section
+since its build photographs became the spec-aside rotator, so there it points at `#specs`.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
