@@ -283,6 +283,14 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
                gap:64px;align-items:start}
 .feature-intro .lede{margin-top:18px}
 
+/* Scroll-pinned stepping. Both rules wait on `is-pinned`, which main.js adds
+   only on a wide viewport with motion allowed, so a narrow screen, a reduced
+   motion setting or no JavaScript all get an ordinary accordion that scrolls
+   past like any other section. 210vh leaves roughly half a screen of scroll
+   per feature after the section settles. */
+.is-pinned .feature-track{height:210vh}
+.is-pinned .feature-pin{position:sticky;top:0;min-height:100vh;display:grid;align-content:center}
+
 .feature-list article{border-top:1px solid var(--line)}
 .feature-list article:last-child{border-bottom:1px solid var(--line)}
 .feature-list h3{margin:0;font-size:inherit}
