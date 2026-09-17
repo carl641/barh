@@ -306,6 +306,18 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:0}
 table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bottom:10px}
 .spec-aside{background:#fff;border:1px solid var(--line);padding:24px}
 .spec-aside .art{background:var(--tint);border:1px solid var(--line);padding:18px;margin-bottom:18px;color:var(--navy)}
+/* build rotator — slides stacked in one frame and cross-faded. The dots are
+   built by main.js, so without JS this is simply the first photograph. */
+.rotator{margin-bottom:18px}
+.rotator-frame{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;
+               background:var(--tint);border:1px solid var(--line)}
+.rotator-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+                   opacity:0;transition:opacity .7s ease}
+.rotator-frame img.is-active{opacity:1}
+.rotator-dots{display:flex;justify-content:center;gap:9px;margin-top:12px}
+.rotator-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--line);
+                     cursor:pointer;transition:background .25s ease,transform .25s ease}
+.rotator-dots button[aria-current="true"]{background:var(--blue);transform:scale(1.3)}
 .spec-aside h3{font-size:23px}
 .spec-aside p{font-size:16px;color:var(--muted)}
 @media (max-width:900px){.specs{grid-template-columns:1fr;gap:32px}}

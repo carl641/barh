@@ -97,6 +97,61 @@
     });
   }
 
+  /* ---------- build rotator ----------
+     Cross-fades the slides inside a [data-rotator] and gives it dot controls.
+     The dots are built here rather than in the markup, so a page without JS
+     shows one still photograph instead of buttons that do nothing. Auto-advance
+     is skipped entirely under prefers-reduced-motion, and pauses while the
+     rotator is hovered or holds keyboard focus. */
+  var rotators = document.querySelectorAll('[data-rotator]');
+
+  Array.prototype.forEach.call(rotators, function (rot) {
+    var slides = rot.querySelectorAll('.rotator-frame img');
+    if (slides.length < 2) return;
+
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var dots = document.createElement('div');
+    var index = 0;
+    var timer = null;
+
+    dots.className = 'rotator-dots';
+
+    var show = function (next) {
+      slides[index].classList.remove('is-active');
+      dots.children[index].setAttribute('aria-current', 'false');
+      index = (next + slides.length) % slides.length;
+      slides[index].classList.add('is-active');
+      dots.children[index].setAttribute('aria-current', 'true');
+    };
+
+    var stop = function () {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+
+    var start = function () {
+      if (still.matches || timer) return;
+      timer = setInterval(function () { show(index + 1); }, 5000);
+    };
+
+    Array.prototype.forEach.call(slides, function (slide, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Show photo ' + (i + 1) + ' of ' + slides.length);
+      dot.setAttribute('aria-current', String(i === 0));
+      dot.addEventListener('click', function () { stop(); show(i); });
+      dots.appendChild(dot);
+    });
+
+    rot.appendChild(dots);
+
+    rot.addEventListener('mouseenter', stop);
+    rot.addEventListener('mouseleave', start);
+    rot.addEventListener('focusin', stop);
+    rot.addEventListener('focusout', start);
+
+    start();
+  });
+
   /* ---------- footer year ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
