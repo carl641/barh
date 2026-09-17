@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260919`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260920`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -46,8 +46,10 @@ slip layouts → add-ons → FAQ → the other two series → quote form → foo
 
 All three also carry photography in the same three places — a detail strip inside "what sets it
 apart", a `#gallery` section of finished builds between the specs and the slip layouts, and a
-labelled single/double slip pair under the layout cards — built from the one `.shots` grid, whose
-column count and frame shape are separate modifiers:
+layout shot inside each of the single- and double-slip cards.
+
+The strips and galleries are built from the one `.shots` grid, whose column count and frame shape
+are separate modifiers:
 
 | row | markup |
 | --- | --- |
@@ -55,11 +57,17 @@ column count and frame shape are separate modifiers:
 | Premier gallery, four shots | `shots cols-4 wide` |
 | Timber gallery, three shots | `shots cols-3 wide` |
 | Aluminum gallery, six shots | `shots cols-3 square` |
-| slip pair (all three) | `shots cols-2 wide` |
 
 Pick the frame shape from what the set mostly is: `wide` is 4:3, `square` is 1:1, and a shot that
 does not match its frame is centre-cropped to fill it. `strip` holds its columns at every width
-instead of wrapping.
+instead of wrapping. `.shots.cols-2` is currently unused but kept, so the modifier set has no gap
+in it.
+
+The slip layout shots are not a `.shots` row. Each sits in its own card as `img.slip-shot`, under
+the heading and above the description, so the shot reads against the layout it illustrates. It
+carries no caption, because the card's `<h3>` already names it. Placing it below the heading rather
+than at the top of the card keeps all three headings on one line, which matters because the
+multi-slip card has no photograph — there is no multi-slip shot in the set.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
