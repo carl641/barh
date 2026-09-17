@@ -274,23 +274,49 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 .features p{font-size:16px;color:var(--muted)}
 @media (max-width:880px){.features{grid-template-columns:1fr 1fr;gap:26px}}
 
-/* ---------- standard-feature shots ----------
-   Each feature keeps its own shot, collapsed to nothing until that feature is
-   hovered, when it slides down beneath the copy. The 0fr/1fr row is what makes
-   it slide to the shot's real height rather than to a guessed maximum. Pure
-   CSS, so it needs no JavaScript — and where there is no pointer to hover
-   with, the shots are simply always down. */
-.features .shot{display:grid;grid-template-rows:0fr;overflow:hidden;margin-top:0;
-                transition:grid-template-rows .45s ease,margin-top .45s ease}
-.features .shot img{min-height:0;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;
-                    background:var(--tint);border-radius:3px;opacity:0;transition:opacity .4s ease}
-.features > div:hover .shot,
-.features > div:focus-within .shot{grid-template-rows:1fr;margin-top:20px}
-.features > div:hover .shot img,
-.features > div:focus-within .shot img{opacity:1}
-@media (hover:none){
-  .features .shot{grid-template-rows:1fr;margin-top:20px}
-  .features .shot img{opacity:1}
+/* ---------- standard features: intro beside a hover accordion ----------
+   The heading and its description take the left column so the copy stops
+   fighting a third of the grid for room. On the right each feature is a row
+   that opens on hover — and on click, tap or keyboard focus, because hover
+   alone reaches neither a phone nor a keyboard. One row is always open. */
+.feature-split{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);
+               gap:64px;align-items:start}
+.feature-intro .lede{margin-top:18px}
+
+.feature-list article{border-top:1px solid var(--line)}
+.feature-list article:last-child{border-bottom:1px solid var(--line)}
+.feature-list h3{margin:0;font-size:inherit}
+.feature-list button{display:flex;align-items:center;gap:18px;width:100%;padding:20px 2px;
+                     background:none;border:0;cursor:pointer;text-align:left;color:var(--navy);
+                     font-family:var(--display);font-size:26px;font-weight:600;line-height:1.1;
+                     letter-spacing:-.01em;transition:color .25s ease}
+.feature-list button::after{content:"";flex:none;margin-left:auto;width:9px;height:9px;
+                            border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+                            transform:rotate(45deg);transition:transform .35s ease}
+.feature-list .is-open button{color:var(--blue)}
+.feature-list .is-open button::after{transform:rotate(-135deg)}
+
+.feature-list .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.feature-list .is-open .panel{grid-template-rows:1fr}
+.feature-list .panel-inner{min-height:0;overflow:hidden}
+/* height:auto matters here — the markup's width/height attributes would
+   otherwise supply a height and aspect-ratio would never get a look in */
+.feature-list .panel-inner img{width:220px;height:auto;aspect-ratio:1/1;object-fit:cover;
+                               background:var(--tint);border-radius:3px;margin:0 0 18px}
+.feature-list .panel-inner p{font-size:16px;color:var(--muted);padding-bottom:26px}
+
+/* Only float the shot into the text where the column can spare the width for
+   it. Narrower than this and the copy drops to ~38 characters a line, so the
+   shot sits above the text instead and the copy keeps the full column. */
+@media (min-width:1140px){
+  .feature-list .panel-inner img{float:left;margin:0 26px 6px 0}
+  .feature-list .panel-inner p{overflow:hidden}
+}
+@media (max-width:900px){
+  .feature-split{grid-template-columns:1fr;gap:34px}
+}
+@media (max-width:560px){
+  .feature-list button{font-size:23px;padding:17px 2px}
 }
 
 /* ---------- feature rows ----------

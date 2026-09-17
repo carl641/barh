@@ -97,6 +97,32 @@
     });
   }
 
+  /* ---------- standard features ----------
+     Hovering a feature opens it. Buttons carry the same behaviour on click,
+     tap and keyboard focus, because hover reaches neither a phone nor a
+     keyboard. Opening one closes the rest and nothing closes on its own, so a
+     row is always open and the column is never a set of bare headings. */
+  var featureList = document.querySelector('[data-feature-list]');
+
+  if (featureList) {
+    var rows = featureList.querySelectorAll('article');
+
+    var openRow = function (row) {
+      Array.prototype.forEach.call(rows, function (other) {
+        var isIt = other === row;
+        other.classList.toggle('is-open', isIt);
+        other.querySelector('button').setAttribute('aria-expanded', String(isIt));
+      });
+    };
+
+    Array.prototype.forEach.call(rows, function (row) {
+      var button = row.querySelector('button');
+      row.addEventListener('mouseenter', function () { openRow(row); });
+      button.addEventListener('click', function () { openRow(row); });
+      button.addEventListener('focus', function () { openRow(row); });
+    });
+  }
+
   /* ---------- build rotator ----------
      Cross-fades the slides inside a [data-rotator] and gives it dot controls.
      The dots are built here rather than in the markup, so a page without JS

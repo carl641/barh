@@ -11,13 +11,13 @@ premier-series-docks.html   Premier Series (steel, hip roof)
 timber-series-docks.html    Timber Series (steel tube trusses, gable roof)
 aluminum-series.html        Aluminum Series (extruded aluminum)
 assets/css/styles.css       all styles (design tokens at the top)
-assets/js/main.js           mobile nav, series dropdown, build rotator, quote form, footer year
+assets/js/main.js           mobile nav, series dropdown, standard features, build rotator, quote form, footer year
 assets/img/                 logo, favicon, photography
 ```
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260925`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260926`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -49,18 +49,26 @@ cards. Timber and Aluminum also have a `#gallery` section of finished builds bet
 the slip layouts; **Premier does not** — its four build photographs are the rotator in the spec
 aside instead (below).
 
-**The feature shots differ.** Timber and Aluminum still show three captioned squares in a row
-beneath the feature grid. On Premier each feature holds its own shot instead, as a `.shot` inside
-the feature's own `<div>`, collapsed to nothing until that feature is hovered, when it slides down
-under the copy. Nothing is captioned, because a shot sits under the heading that names it.
+**The feature sections differ.** Timber and Aluminum still put three text columns over a row of
+three captioned squares. Premier splits instead (`.feature-split`): heading and description in the
+left column, and in the right a `[data-feature-list]` of three rows, each opening on hover to show
+its shot and its copy together. Nothing is captioned, because the heading opening above a shot
+names it.
 
-It is pure CSS — no JavaScript, and it works with scripting off. The slide is a `grid-template-rows`
-0fr-to-1fr transition, which animates to the shot's real height instead of to a guessed maximum.
-Where there is no pointer to hover with, a `(hover:none)` block simply leaves all three shots down.
+Hover is the fast path, not the only one. Each row's heading is a real `<button>`, so click, tap and
+keyboard focus open a row too — hover alone reaches neither a phone nor a keyboard — and
+`aria-expanded` tracks the open row. Opening one closes the others and nothing closes on its own,
+so a row is always open and the column is never a set of bare headings.
 
-Note that the section is ~357px taller while a shot is open, so the page below it moves. That is
-inherent to sliding something down rather than overlaying it; the alternative is reserving the
-height permanently, which leaves that much white space under the copy when nothing is hovered.
+Two measurements drove the layout. The old three-column grid ran the copy at 40–45 characters a
+line, under the readable band; giving the description its own column puts every width from 1440px
+down to 600px between 48 and 76. And the shot only floats into the copy above 1140px, because
+narrower than that the float squeezes the text back down to ~38. Below 1140px the shot sits above
+the text instead and the copy keeps the whole column.
+
+The shot carries `height:auto`. Without it the markup's `width`/`height` attributes supply a height,
+`aspect-ratio` never applies, and a 1200px-tall image blows the panel out — which is exactly what
+happened on the first pass.
 
 Timber and Aluminum's strips and the two galleries are built from the one `.shots` grid, whose
 column count and frame shape are separate modifiers:
