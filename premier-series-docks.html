@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260923">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260924">
 </head>
 <body>
 
@@ -109,22 +109,19 @@
     </div>
     <!-- captions and order track the three headings above, so each photo reads
          against its feature even though the strip is its own row -->
-    <div class="shots cols-3 square strip">
-      <figure>
-        <img src="https://1cfzkm4ioa.ucarecd.net/653e1229-7d65-4497-8f24-b606e333bd5a/premier-hip.webp"
+    <!-- One frame for the three features. Hovering a feature brings its shot
+         forward and lights that feature's rule, so nothing needs a caption: the
+         heading under the pointer is the label. With no pointer on the section
+         it drifts through them on its own, so the shots are still seen. -->
+    <div class="feature-shots" data-feature-shots>
+      <div class="rotator-frame">
+        <img class="is-active" src="https://1cfzkm4ioa.ucarecd.net/653e1229-7d65-4497-8f24-b606e333bd5a/premier-hip.webp"
              alt="The hip roof on a Bar H Premier Series dock" width="1200" height="1200" loading="lazy" decoding="async">
-        <figcaption>Hip Roof</figcaption>
-      </figure>
-      <figure>
         <img src="https://1cfzkm4ioa.ucarecd.net/323b9e93-d3a0-49ec-87f3-02df0fd26533/premier-walkway.webp"
              alt="A decorative truss-frame walkway with handrails on a Bar H Premier Series dock" width="1200" height="1200" loading="lazy" decoding="async">
-        <figcaption>Decorative Walkway</figcaption>
-      </figure>
-      <figure>
         <img src="https://1cfzkm4ioa.ucarecd.net/16c069c7-2567-45bc-9110-020626445373/premier-rotfree.webp"
              alt="Rot-free decking on a Bar H Premier Series dock, built without lumber" width="1200" height="1200" loading="lazy" decoding="async">
-        <figcaption>Rot-Free Construction</figcaption>
-      </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -543,6 +540,6 @@
 }
 </script>
 
-<script src="assets/js/main.js?v=20260923" defer></script>
+<script src="assets/js/main.js?v=20260924" defer></script>
 </body>
 </html>

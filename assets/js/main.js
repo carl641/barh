@@ -97,6 +97,53 @@
     });
   }
 
+  /* ---------- standard-feature shots ----------
+     One frame holds a shot per feature. Hovering a feature brings its shot
+     forward and lights that feature's rule; with nothing hovered the frame
+     drifts through them, so the shots are seen without a pointer at all.
+     Drifting is skipped under prefers-reduced-motion. */
+  var featureShots = document.querySelector('[data-feature-shots]');
+  var featureList = document.querySelector('#built .features');
+
+  if (featureShots && featureList) {
+    var featureSlides = featureShots.querySelectorAll('img');
+    var features = featureList.children;
+
+    if (featureSlides.length > 1 && featureSlides.length === features.length) {
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var lit = 0;
+      var drift = null;
+
+      featureList.classList.add('is-linked');
+
+      var lightUp = function (next) {
+        featureSlides[lit].classList.remove('is-active');
+        features[lit].classList.remove('is-lit');
+        lit = (next + featureSlides.length) % featureSlides.length;
+        featureSlides[lit].classList.add('is-active');
+        features[lit].classList.add('is-lit');
+      };
+
+      var settle = function () {
+        if (drift) { clearInterval(drift); drift = null; }
+      };
+
+      var wander = function () {
+        if (calm.matches || drift) return;
+        drift = setInterval(function () { lightUp(lit + 1); }, 4500);
+      };
+
+      Array.prototype.forEach.call(features, function (feature, i) {
+        feature.addEventListener('mouseenter', function () { settle(); lightUp(i); });
+      });
+
+      featureList.addEventListener('mouseleave', wander);
+
+      lightUp(0);
+      wander();
+    }
+  }
+
   /* ---------- build rotator ----------
      Cross-fades the slides inside a [data-rotator] and gives it dot controls.
      The dots are built here rather than in the markup, so a page without JS
