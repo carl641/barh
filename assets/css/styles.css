@@ -297,11 +297,17 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs .slips{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;
                 color:var(--blue);font-weight:600;margin-bottom:6px}
 .configs h3{font-size:26px}
+/* starting price on a slip card — label above, figure below */
+.configs .from{font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);margin-top:8px}
+.configs .from b{display:block;font-size:14px;font-weight:600;letter-spacing:.1em;
+                 text-transform:uppercase;color:var(--meta);margin-bottom:-2px}
 .configs > article > p{font-size:16px;color:var(--muted);margin-top:8px}
 .configs ul{list-style:none;font-size:16px;color:var(--muted);margin-top:14px}
 .configs li{padding:4px 0 4px 22px;position:relative}
 .configs li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:2px;background:var(--blue)}
 @media (max-width:900px){.configs{grid-template-columns:1fr}}
+/* closing statement under the pricing cards */
+.mission{max-width:64ch;margin:44px auto 0;text-align:center;font-size:17px;color:var(--muted)}
 
 /* ---------- photo rows (detail strip, slip layouts, gallery) ----------
    Column count and frame shape are separate modifiers, so a row is written as
