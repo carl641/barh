@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260920`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260921`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -63,11 +63,15 @@ does not match its frame is centre-cropped to fill it. `strip` holds its columns
 instead of wrapping. `.shots.cols-2` is currently unused but kept, so the modifier set has no gap
 in it.
 
-The slip layout shots are not a `.shots` row. Each sits in its own card as `img.slip-shot`, under
-the heading and above the description, so the shot reads against the layout it illustrates. It
-carries no caption, because the card's `<h3>` already names it. Placing it below the heading rather
-than at the top of the card keeps all three headings on one line, which matters because the
-multi-slip card has no photograph — there is no multi-slip shot in the set.
+The slip layout shots are not a `.shots` row. Each leads its own card as `img.slip-shot`: negative
+margins pull it out of the card's padding so it runs edge to edge, flush with the top border, above
+the eyebrow. It carries no caption, because the card's `<h3>` already names it. The card lifts and
+the shot scales slightly on hover; the stylesheet's global `prefers-reduced-motion` rule collapses
+both to nothing for anyone who asks for that.
+
+`#configs` holds two cards, single and double slip, matching what the live site prices. They keep
+two columns down to 640px rather than the usual 900px — stacked, a card runs the full content width
+and its lead shot would tower over the copy beneath it.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
@@ -127,6 +131,13 @@ Premier has since been corrected against the live page. Its `#built` section car
 "Standard features" — Hip Roof, Decorative Walkway, Rot-Free Construction — in Bar H's own words,
 and both starting prices ($38,999 single slip, $46,999 double slip) are confirmed, as is the
 closing mission statement under the slip cards.
+
+The invented third "Multi-slip" layout card is gone from all three pages, because the live site
+prices single and double slip only. Two passing mentions of larger builds survive elsewhere on each
+page and were left alone, since dropping a pricing card is not the same as saying Bar H will not
+build one: the hero chip reading `Slips — Single, double, larger` and the specifications row
+reading `Single, double and larger, drawn to the boats you own`. Delete both if the series really
+does stop at two.
 
 **Timber and Aluminum have not been corrected.** Their `#built` headings and body copy are still
 the reconstruction, and on both pages the detail photographs were filed against headings that do
