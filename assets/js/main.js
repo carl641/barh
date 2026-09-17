@@ -141,6 +141,10 @@
         var reached = Math.min(Math.max(run, 0), 0.999);
         var next = Math.floor(reached * rows.length);
 
+        /* --run drives the drift and the rail, so something keeps moving with
+           the scroll between one feature and the next. */
+        section.style.setProperty('--run', reached.toFixed(4));
+
         if (next !== step) {
           step = next;
           openRow(rows[next]);
@@ -160,6 +164,7 @@
         var pin = roomy.matches && !calm.matches;
         section.classList.toggle('is-pinned', pin);
         if (pin) { step = -1; stepTo(); }
+        else { section.style.removeProperty('--run'); }
       };
 
       window.addEventListener('scroll', onScroll, { passive: true });

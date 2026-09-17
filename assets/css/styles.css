@@ -286,10 +286,24 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 /* Scroll-pinned stepping. Both rules wait on `is-pinned`, which main.js adds
    only on a wide viewport with motion allowed, so a narrow screen, a reduced
    motion setting or no JavaScript all get an ordinary accordion that scrolls
-   past like any other section. 210vh leaves roughly half a screen of scroll
-   per feature after the section settles. */
-.is-pinned .feature-track{height:210vh}
+   past like any other section. 175vh is a quarter screen of scroll per feature
+   once the section settles — long enough to read, short enough not to feel
+   held. */
+.is-pinned .feature-track{height:175vh}
 .is-pinned .feature-pin{position:sticky;top:0;min-height:100vh;display:grid;align-content:center}
+
+/* Nothing standing still is what reads as stuck, so while the section is held
+   two things keep moving with the scroll: the block drifts gently up through
+   it, and the rail beside the features fills. main.js writes --run, 0 to 1,
+   every frame. */
+.is-pinned .feature-split{transform:translateY(calc((.5 - var(--run,.5)) * 52px));
+                          will-change:transform}
+.feature-list{position:relative}
+.feature-run{display:none;position:absolute;left:-30px;top:6px;bottom:6px;width:2px;
+             background:var(--line);border-radius:2px;overflow:hidden}
+.is-pinned .feature-run{display:block}
+.feature-run span{display:block;width:100%;height:calc(var(--run,0) * 100%);
+                  background:var(--blue);border-radius:2px}
 
 .feature-list article{border-top:1px solid var(--line)}
 .feature-list article:last-child{border-bottom:1px solid var(--line)}

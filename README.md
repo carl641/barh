@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260927`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260928`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -59,10 +59,16 @@ Each row's heading is a real `<button>`: click, tap and keyboard focus open a ro
 `aria-expanded` tracks which is open. Opening one closes the others and nothing closes on its own,
 so a row is always open and the column is never a set of bare headings.
 
-**The section also pins.** `.feature-track` is 210vh tall and `.feature-pin` sticks inside it, so
-once the section settles at the middle of the screen it holds still while the scroll steps through
-the three features — a third of the remaining track each — and then releases and the page carries
-on. Clicking still works while pinned; the scroll takes over again at the next boundary.
+**The section also pins.** `.feature-track` is 175vh tall and `.feature-pin` sticks inside it, so
+once the section settles at the middle of the screen it holds while the scroll steps through the
+three features — a third of the remaining track each — and then releases and the page carries on.
+Clicking still works while pinned; the scroll takes over again at the next boundary.
+
+A held section reads as a stuck one if nothing in it moves, so two things move continuously while
+it is held: the block drifts gently up through the pin, and the rail in the gutter beside the
+features fills. `main.js` writes `--run` (0 to 1) on the section each frame and both are expressed
+from it in CSS, so there is one source of truth for how far through the section you are. The rail
+only exists while pinned — off a pinned viewport it would be measuring nothing.
 
 Both rules wait on an `is-pinned` class that `main.js` adds only above 900px with motion allowed,
 and re-evaluates on resize and on either media query changing. A narrow screen, a
