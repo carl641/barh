@@ -98,11 +98,13 @@
   }
 
   /* ---------- standard features ----------
-     Hovering a feature opens it. Buttons carry the same behaviour on click,
-     tap and keyboard focus, because hover reaches neither a phone nor a
-     keyboard. Opening one closes the rest and nothing closes on its own, so a
-     row is always open and the column is never a set of bare headings. */
+     Rows open on click, tap or keyboard focus. Where the viewport is wide
+     enough and motion is not being avoided, the section also pins: it holds
+     still while the scroll steps through the three features in turn, then
+     releases and the page carries on. Opening one closes the others and
+     nothing closes on its own, so a row is always open. */
   var featureList = document.querySelector('[data-feature-list]');
+  var featureTrack = document.querySelector('[data-feature-track]');
 
   if (featureList) {
     var rows = featureList.querySelectorAll('article');
@@ -117,10 +119,55 @@
 
     Array.prototype.forEach.call(rows, function (row) {
       var button = row.querySelector('button');
-      row.addEventListener('mouseenter', function () { openRow(row); });
       button.addEventListener('click', function () { openRow(row); });
       button.addEventListener('focus', function () { openRow(row); });
     });
+
+    if (featureTrack) {
+      var section = featureTrack.closest('section');
+      var roomy = window.matchMedia('(min-width: 901px)');
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var step = -1;
+      var queued = false;
+
+      /* Which feature the scroll has reached. 0 until the pin engages — which
+         is when the section has settled at the middle of the screen — then a
+         third of the remaining track per feature. */
+      var stepTo = function () {
+        var span = featureTrack.offsetHeight - window.innerHeight;
+        if (span <= 0) return;
+
+        var run = -featureTrack.getBoundingClientRect().top / span;
+        var reached = Math.min(Math.max(run, 0), 0.999);
+        var next = Math.floor(reached * rows.length);
+
+        if (next !== step) {
+          step = next;
+          openRow(rows[next]);
+        }
+      };
+
+      var onScroll = function () {
+        if (queued) return;
+        queued = true;
+        window.requestAnimationFrame(function () {
+          queued = false;
+          if (section.classList.contains('is-pinned')) stepTo();
+        });
+      };
+
+      var settle = function () {
+        var pin = roomy.matches && !calm.matches;
+        section.classList.toggle('is-pinned', pin);
+        if (pin) { step = -1; stepTo(); }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', settle);
+      if (roomy.addEventListener) roomy.addEventListener('change', settle);
+      if (calm.addEventListener) calm.addEventListener('change', settle);
+      settle();
+    }
   }
 
   /* ---------- build rotator ----------

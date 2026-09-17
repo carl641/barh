@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260926`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260927`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -55,10 +55,20 @@ left column, and in the right a `[data-feature-list]` of three rows, each openin
 its shot and its copy together. Nothing is captioned, because the heading opening above a shot
 names it.
 
-Hover is the fast path, not the only one. Each row's heading is a real `<button>`, so click, tap and
-keyboard focus open a row too — hover alone reaches neither a phone nor a keyboard — and
-`aria-expanded` tracks the open row. Opening one closes the others and nothing closes on its own,
+Each row's heading is a real `<button>`: click, tap and keyboard focus open a row, and
+`aria-expanded` tracks which is open. Opening one closes the others and nothing closes on its own,
 so a row is always open and the column is never a set of bare headings.
+
+**The section also pins.** `.feature-track` is 210vh tall and `.feature-pin` sticks inside it, so
+once the section settles at the middle of the screen it holds still while the scroll steps through
+the three features — a third of the remaining track each — and then releases and the page carries
+on. Clicking still works while pinned; the scroll takes over again at the next boundary.
+
+Both rules wait on an `is-pinned` class that `main.js` adds only above 900px with motion allowed,
+and re-evaluates on resize and on either media query changing. A narrow screen, a
+`prefers-reduced-motion` setting or no JavaScript at all collapses the track to its natural height
+and leaves an ordinary accordion that scrolls past like any other section — scroll-pinning is
+disorienting enough that it should never be the only way through.
 
 Two measurements drove the layout. The old three-column grid ran the copy at 40–45 characters a
 line, under the readable band; giving the description its own column puts every width from 1440px
