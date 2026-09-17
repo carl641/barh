@@ -17,6 +17,12 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
+The nav's **Docks** item is a link and a dropdown at once: `a.sub-link` goes to the homepage
+`#docks` section (`index.html#docks` from a series page), and the caret beside it is its own
+`button.sub-toggle` that opens the panel. Splitting them is what lets the label navigate while the
+panel still opens on hover, click, tap and keyboard — a single control cannot do both. The panel
+lists the three series only; "all three" is what the label itself now does.
+
 `styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261007`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages

@@ -36,7 +36,8 @@
   }
 
   /* ---------- series dropdown ----------
-     CSS opens the panel on hover; this adds click, touch and keyboard. */
+     "Docks" is a link to the homepage section; the caret beside it is this
+     button. CSS opens the panel on hover; this adds click, touch and keyboard. */
   var subToggles = document.querySelectorAll('.sub-toggle');
 
   var closeSubs = function (except) {

@@ -71,10 +71,12 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .nav .call{font-family:var(--display);font-size:20px;font-weight:600;text-decoration:none;
            color:var(--blue);border-bottom:2px solid var(--blue);white-space:nowrap}
 
-/* series dropdown */
-.has-sub{position:relative}
-.sub-toggle{font:inherit;font-weight:500;background:none;border:0;padding:0;color:var(--navy);opacity:.85;
-            cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+/* series dropdown — "Docks" is a link to the homepage section, and the caret
+   beside it is its own button, so the label can navigate while the panel still
+   opens on hover, click and keyboard */
+.has-sub{position:relative;display:flex;align-items:center;gap:7px}
+.sub-toggle{font:inherit;background:none;border:0;padding:2px;color:var(--navy);opacity:.85;
+            cursor:pointer;display:inline-flex;align-items:center}
 .sub-toggle:hover{opacity:1}
 .sub-toggle svg{display:block;transition:transform .15s ease}
 .sub-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
@@ -110,10 +112,16 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
   .nav-links a{display:block;padding:14px var(--gutter);font-size:18px}
   .nav-links li + li a{border-top:1px solid var(--line)}
   .nav-links{max-height:calc(100vh - 66px);overflow-y:auto}
-  .has-sub{position:static}
-  .sub-toggle{display:flex;width:100%;justify-content:space-between;align-items:center;
-              padding:14px var(--gutter);font-size:18px;border-top:1px solid var(--line)}
-  .nav-links li:first-child .sub-toggle{border-top:0}
+  /* the label takes the row and the caret sits at its end, both big enough to tap */
+  /* stretch, so the label and the caret share a height and their top borders
+     line up as one rule across the row */
+  .has-sub{position:static;flex-wrap:wrap;justify-content:space-between;gap:0;align-items:stretch}
+  .nav-links .sub-link{flex:1;padding:14px var(--gutter);font-size:18px}
+  .sub-toggle{padding:14px var(--gutter);border-top:1px solid var(--line);align-items:center}
+  .nav-links .has-sub .sub-link{border-top:1px solid var(--line)}
+  .nav-links li:first-child .sub-toggle,
+  .nav-links li:first-child .sub-link{border-top:0}
+  .sub{flex-basis:100%}
   .sub{position:static;margin:0;min-width:0;padding:0;border:0;box-shadow:none;background:var(--tint)}
   .sub::before{display:none}
   .has-sub:hover > .sub{display:none}
