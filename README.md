@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260918`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260919`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -77,9 +77,6 @@ Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 
 Search the source for `TODO`. In rough order of how much it matters:
 
-- **The Premier starting price.** `premier-series-docks.html` says single-slip builds start at
-  **$38,999**, and the figure is repeated in that page's `Product` JSON-LD. It came from a search
-  result, not from the live page — confirm it or delete both copies before publishing.
 - **Phone numbers and email.** The quote sections list `(270) 748-2525` (Jake Bartlett) and
   `(270) 869-5580` (Tristan Hagan). Also recovered from search results rather than read off
   `barhsolutions.com/contact` — confirm before publishing. The `info@barhsolutions.com` address
@@ -98,11 +95,11 @@ Search the source for `TODO`. In rough order of how much it matters:
   series photos do double duty in those compare cards, so there is one image per series to swap if
   a better shot arrives. Still line drawings: the spec aside on each series page (`.art`), now the
   only place any remain.
-- **Series photo captions and alt text.** The detail strips are captioned from the filenames Bar H
-  supplied — "Hip roof", "Steel tube truss frame", "Extruded aluminum frame", "Durability",
-  "Rot-free decking", "Walkway" — rather than from the photographs, which were not viewable from
-  the build environment. Every piece of alt text across the three pages was written the same way.
-  Someone who can see the images should confirm both.
+- **Timber and Aluminum photo captions.** Their detail strips are captioned from the filenames Bar
+  H supplied — "Steel tube truss frame", "Extruded aluminum frame", "Durability", "Rot-free
+  decking", "Walkway" — rather than from the photographs, which were not viewable from the build
+  environment. Premier's three are the real feature names off the live page. Alt text everywhere
+  was written without seeing the images, so someone who can see them should read it through.
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
   (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
   unreachable from the build environment and the files could not be downloaded. Pull them down and
@@ -112,7 +109,20 @@ Search the source for `TODO`. In rough order of how much it matters:
 - **Logo.** The header uses the real logo at `assets/img/qt=q_95.webp` (368x200).
   `assets/img/barh-logo.svg` is the old placeholder wordmark, kept unused.
 
-The copy on the three series pages was reconstructed from search-engine indexes of the live site,
-because the site itself was unreachable from the build environment. The headline sentence on each
-page is the real one; the supporting copy around it is new and should be read by someone at Bar H
-before it ships.
+## Which copy is real
+
+The site itself was unreachable from the build environment, so the three series pages were first
+written from search-engine indexes: the headline sentence on each was real, the supporting copy
+around it was not.
+
+Premier has since been corrected against the live page. Its `#built` section carries the real
+"Standard features" — Hip Roof, Decorative Walkway, Rot-Free Construction — in Bar H's own words,
+and both starting prices ($38,999 single slip, $46,999 double slip) are confirmed, as is the
+closing mission statement under the slip cards.
+
+**Timber and Aluminum have not been corrected.** Their `#built` headings and body copy are still
+the reconstruction, and on both pages the detail photographs were filed against headings that do
+not name them — Timber's photos are frame/rot-free/walkway against headings about trusses, the
+gable and the look; Aluminum's are extruded frame/durability/rot-free against headings about rust,
+extrusion and Flotation Systems. Paste the live copy for either page and they can be fixed the
+same way Premier was.
