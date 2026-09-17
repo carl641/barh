@@ -292,8 +292,12 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 
 /* ---------- slip configurations ---------- */
 .price-note{margin-top:18px}
-.configs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.configs article{background:#fff;border:1px solid var(--line);padding:26px 24px;display:flex;flex-direction:column}
+.configs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:40px}
+.configs article{background:#fff;border:1px solid var(--line);padding:26px 24px;display:flex;
+                 flex-direction:column;overflow:hidden;
+                 transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.configs article:hover{transform:translateY(-4px);border-color:var(--sky);
+                       box-shadow:0 14px 34px rgba(11,35,64,.13)}
 .configs .slips{font-family:var(--display);font-size:14px;letter-spacing:.1em;text-transform:uppercase;
                 color:var(--blue);font-weight:600;margin-bottom:6px}
 .configs h3{font-size:26px}
@@ -301,16 +305,20 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 .configs .from{font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy);margin-top:8px}
 .configs .from b{display:block;font-size:14px;font-weight:600;letter-spacing:.1em;
                  text-transform:uppercase;color:var(--meta);margin-bottom:-2px}
-/* the layout shot sits in the card, above its description — the card's own
-   <h3> names it, so it needs no caption of its own */
-.configs .slip-shot{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
-                    background:var(--tint);border:1px solid var(--line);
-                    border-radius:3px;margin:16px 0 4px}
+/* the layout shot leads the card: negative margins pull it out of the card's
+   padding so it runs edge to edge, flush with the top border. The card's own
+   <h3> names it, so it carries no caption. */
+.configs .slip-shot{width:calc(100% + 48px);max-width:none;height:auto;aspect-ratio:4/3;
+                    object-fit:cover;background:var(--tint);margin:-26px -24px 22px;
+                    transition:transform .5s ease}
+.configs article:hover .slip-shot{transform:scale(1.045)}
 .configs > article > p{font-size:16px;color:var(--muted);margin-top:8px}
 .configs ul{list-style:none;font-size:16px;color:var(--muted);margin-top:14px}
 .configs li{padding:4px 0 4px 22px;position:relative}
 .configs li::before{content:"";position:absolute;left:0;top:13px;width:11px;height:2px;background:var(--blue)}
-@media (max-width:900px){.configs{grid-template-columns:1fr}}
+/* hold two columns well past the usual 900px break: stacked, a card runs the
+   full width and its lead shot would tower over the copy beneath it */
+@media (max-width:640px){.configs{grid-template-columns:1fr}}
 /* closing statement under the pricing cards */
 .mission{max-width:64ch;margin:44px auto 0;text-align:center;font-size:17px;color:var(--muted)}
 
