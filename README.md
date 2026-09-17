@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261002`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261003`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -132,6 +132,11 @@ reads as "those two elsewhere, these ones here" rather than three equivalent thi
 scoped under `.series` so they outrank `.series article`, which sets the white card background the
 gradient replaces. It points at `#gallery` on Timber and Aluminum; Premier has no gallery section
 since its build photographs became the spec-aside rotator, so there it points at `#specs`.
+
+Under 900px the row keeps the two series beside each other and drops the photos beneath them with
+`grid-column: 1 / -1`, where it stops being a card and becomes a bar: laid on its side, about 100px
+deep instead of 540, with the link at the far end. Under 560px the whole row is single file and the
+bar's own contents stack rather than squeeze.
 
 Each carries its own `<title>`, meta description, canonical URL and three JSON-LD blocks
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series

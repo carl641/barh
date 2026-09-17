@@ -499,7 +499,27 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
                         padding-bottom:2px;transition:border-color .25s ease}
 .series .to-gallery a:hover .go{border-bottom-color:#fff}
 
-@media (max-width:900px){.series.compare{grid-template-columns:1fr}}
+/* Tablet: the two series stay beside each other and the photos drop under
+   them, spanning the row. Down there it stops being a card and becomes a bar —
+   laid on its side, shallower, with the link pushed to the far end — so it
+   still reads as a different kind of thing without a card's height. */
+@media (max-width:900px){
+  .series.compare{grid-template-columns:1fr 1fr;gap:22px}
+  .series .to-gallery{grid-column:1 / -1}
+  .series .to-gallery a{flex-direction:row;align-items:center;flex-wrap:wrap;
+                        gap:4px 24px;padding:22px 26px}
+  .series .to-gallery .tag{flex:1 0 100%}
+  .series .to-gallery h3{font-size:21px;margin:0;flex:0 0 auto}
+  .series .to-gallery p{flex:1 1 220px}
+  .series .to-gallery .go{margin-left:auto;font-size:17px}
+}
+/* phone: one column, and the bar's contents stack rather than squeeze */
+@media (max-width:560px){
+  .series.compare{grid-template-columns:1fr}
+  .series .to-gallery a{flex-direction:column;align-items:flex-start;gap:8px;padding:22px 22px 24px}
+  .series .to-gallery p{flex:none}
+  .series .to-gallery .go{margin-left:0}
+}
 
 @media (max-width:420px){
   :root{--gutter:18px}
