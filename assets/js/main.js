@@ -117,10 +117,18 @@
       });
     };
 
-    Array.prototype.forEach.call(rows, function (row) {
+    /* Choosing a feature by hand. While the section is pinned the scroll
+       position is what decides the open row, so opening one without moving the
+       scroll to match leaves the two disagreeing and the next scroll snaps the
+       choice away. Travel to that feature's place in the track instead. The
+       section is sticky, so it does not visibly move — only the rail and the
+       drift catch up. */
+    var pickRow = function (row, i) {};
+
+    Array.prototype.forEach.call(rows, function (row, i) {
       var button = row.querySelector('button');
-      button.addEventListener('click', function () { openRow(row); });
-      button.addEventListener('focus', function () { openRow(row); });
+      button.addEventListener('click', function () { pickRow(row, i); });
+      button.addEventListener('focus', function () { pickRow(row, i); });
     });
 
     if (featureTrack) {
@@ -129,6 +137,29 @@
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
       var step = -1;
       var queued = false;
+      var steerTo = null;
+      var steerTimer = null;
+
+      /* The middle of a feature's share of the track, so landing there leaves
+         the scroll and the open row agreeing rather than on a boundary. */
+      var restFor = function (i) {
+        var span = featureTrack.offsetHeight - window.innerHeight;
+        var top = featureTrack.getBoundingClientRect().top + window.pageYOffset;
+        return Math.round(top + ((i + 0.5) / rows.length) * span);
+      };
+
+      pickRow = function (row, i) {
+        if (step === i && row.classList.contains('is-open')) return;
+
+        openRow(row);
+        if (!section.classList.contains('is-pinned')) return;
+
+        step = i;
+        steerTo = restFor(i);
+        window.clearTimeout(steerTimer);
+        steerTimer = window.setTimeout(function () { steerTo = null; }, 1200);
+        window.scrollTo(0, steerTo);
+      };
 
       /* Which feature the scroll has reached. 0 until the pin engages — which
          is when the section has settled at the middle of the screen — then a
@@ -144,6 +175,17 @@
         /* --run drives the drift and the rail, so something keeps moving with
            the scroll between one feature and the next. */
         section.style.setProperty('--run', reached.toFixed(4));
+
+        /* Travelling to a feature someone picked: let the rail keep up, but
+           leave the open row alone — it is already the one they asked for, and
+           swapping through the features on the way is the glitch. */
+        if (steerTo !== null) {
+          if (Math.abs(window.pageYOffset - steerTo) <= 2) {
+            steerTo = null;
+            window.clearTimeout(steerTimer);
+          }
+          return;
+        }
 
         if (next !== step) {
           step = next;
