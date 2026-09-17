@@ -513,12 +513,20 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
   .series .to-gallery p{flex:1 1 220px}
   .series .to-gallery .go{margin-left:auto;font-size:17px}
 }
-/* phone: one column, and the bar's contents stack rather than squeeze */
+/* Phone: one column, and every line of the bar stacks. The children carry
+   row-oriented flex sizing from the rule above, and in a *column* a flex-basis
+   is a height — so `flex:1 0 100%` on the tag filled the whole bar and wrapping
+   threw the rest into a second column that ran off the edge. Clear the basis,
+   stop the wrap, and let each line have the full width. The bar grows taller
+   instead, which is the right trade at this size. */
 @media (max-width:560px){
   .series.compare{grid-template-columns:1fr}
-  .series .to-gallery a{flex-direction:column;align-items:flex-start;gap:8px;padding:22px 22px 24px}
-  .series .to-gallery p{flex:none}
-  .series .to-gallery .go{margin-left:0}
+  .series .to-gallery a{flex-direction:column;flex-wrap:nowrap;align-items:flex-start;
+                        gap:9px;padding:24px 22px 26px}
+  .series .to-gallery .tag,
+  .series .to-gallery h3,
+  .series .to-gallery p{flex:0 0 auto;width:100%;margin-left:0}
+  .series .to-gallery .go{flex:0 0 auto;width:auto;margin-left:0}
 }
 
 @media (max-width:420px){
