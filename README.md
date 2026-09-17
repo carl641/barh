@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261004`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261005`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -44,16 +44,11 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
-All three carry photography under the feature copy and inside each of the single- and double-slip
-cards. Timber and Aluminum also have a `#gallery` section of finished builds between the specs and
-the slip layouts; **Premier does not** — its four build photographs are the rotator in the spec
-aside instead (below).
-
-**The feature sections differ.** Timber and Aluminum still put three text columns over a row of
-three captioned squares. Premier splits instead (`.feature-split`): heading and description in the
-left column, and in the right a `[data-feature-list]` of three rows, each opening on hover to show
-its shot and its copy together. Nothing is captioned, because the heading opening above a shot
-names it.
+All three are now built the same way. `#built` is a `.feature-split`: heading and description in
+the left column, and in the right a `[data-feature-list]` of three rows, each opening to show its
+shot and its copy together. Nothing is captioned, because the heading opening above a shot names
+it. None of them has a `#gallery` section any more — every page's build photographs are the
+`[data-rotator]` in its specifications aside.
 
 Each row's heading is a real `<button>`: click, tap and keyboard focus open a row, and
 `aria-expanded` tracks which is open. Opening one closes the others and nothing closes on its own,
@@ -103,14 +98,10 @@ The shot carries `height:auto`. Without it the markup's `width`/`height` attribu
 `aspect-ratio` never applies, and a 1200px-tall image blows the panel out — which is exactly what
 happened on the first pass.
 
-Timber and Aluminum's strips and the two galleries are built from the one `.shots` grid, whose
-column count and frame shape are separate modifiers:
-
-| row | markup |
-| --- | --- |
-| detail strip (Timber, Aluminum) | `shots cols-3 square strip` |
-| Timber gallery, three shots | `shots cols-3 wide` |
-| Aluminum gallery, six shots | `shots cols-3 square` |
+The `.shots` grid — column count and frame shape as separate modifiers, `shots cols-3 wide` and so
+on — now has no user left on the series pages, the strips and galleries it carried having become
+accordion panels and rotator slides. It is kept because it is the one way this stylesheet lays out
+a row of photographs, and the next page that needs one will want it.
 
 Pick the frame shape from what the set mostly is: `wide` is 4:3, `square` is 1:1, and a shot that
 does not match its frame is centre-cropped to fill it. `strip` holds its columns at every width
@@ -183,11 +174,15 @@ Search the source for `TODO`. In rough order of how much it matters:
   series photos do double duty in those compare cards, so there is one image per series to swap if
   a better shot arrives. Still line drawings: the spec aside on each series page (`.art`), now the
   only place any remain.
-- **Timber and Aluminum photo captions.** Their detail strips are captioned from the filenames Bar
-  H supplied — "Steel tube truss frame", "Extruded aluminum frame", "Durability", "Rot-free
-  decking", "Walkway" — rather than from the photographs, which were not viewable from the build
-  environment. Premier's three are the real feature names off the live page. Alt text everywhere
-  was written without seeing the images, so someone who can see them should read it through.
+- **Timber's feature photographs do not match its headings.** This matters more now than it did.
+  While the shots sat in a captioned strip the caption named each one; in the accordion a shot
+  opens directly under a heading, and on Timber that heading is the reconstruction rather than Bar
+  H's words. "The gable earns its keep" opens onto rot-free decking, and "Bold and timeless on the
+  water" onto a walkway. Aluminum's three were reordered and do line up — rust/rot-free,
+  extrusion/extruded frame, Flotation Systems/durability. Paste Timber's live copy and its section
+  can be corrected the way Premier's was.
+- **Alt text everywhere was written without seeing the images**, which the build environment cannot
+  reach. Someone who can see them should read it through.
 - **Hot-linked images.** Every real photo except the logo is served from the Uploadcare CDN
   (`1cfzkm4ioa.ucarecd.net`) rather than committed to `assets/img/`, because that host is
   unreachable from the build environment and the files could not be downloaded. Pull them down and
