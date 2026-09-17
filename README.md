@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260928`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260929`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -62,7 +62,12 @@ so a row is always open and the column is never a set of bare headings.
 **The section also pins.** `.feature-track` is 175vh tall and `.feature-pin` sticks inside it, so
 once the section settles at the middle of the screen it holds while the scroll steps through the
 three features — a third of the remaining track each — and then releases and the page carries on.
-Clicking still works while pinned; the scroll takes over again at the next boundary.
+Clicking works while pinned, and moves the scroll to that feature's place in the track rather than
+just opening it. While pinned the scroll position is what decides the open row, so opening one
+without moving the scroll to match leaves the two disagreeing and the next scroll snaps the choice
+away. The section is sticky, so travelling there does not move it on screen — only the rail and the
+drift catch up. The row that was picked stays open on the way, instead of the features flicking past
+as the page travels.
 
 A held section reads as a stuck one if nothing in it moves, so two things move continuously while
 it is held: the block drifts gently up through the pin, and the rail in the gutter beside the
