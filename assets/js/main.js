@@ -133,7 +133,10 @@
 
     if (featureTrack) {
       var section = featureTrack.closest('section');
-      var roomy = window.matchMedia('(min-width: 901px)');
+      /* Wide enough for the two columns, and tall enough to hold the whole
+         block on screen — it reaches 623px — with room for a quarter screen
+         of scroll per feature. */
+      var roomy = window.matchMedia('(min-width: 901px) and (min-height: 720px)');
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
       var step = -1;
       var queued = false;
