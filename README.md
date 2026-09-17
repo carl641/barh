@@ -11,13 +11,13 @@ premier-series-docks.html   Premier Series (steel, hip roof)
 timber-series-docks.html    Timber Series (steel tube trusses, gable roof)
 aluminum-series.html        Aluminum Series (extruded aluminum)
 assets/css/styles.css       all styles (design tokens at the top)
-assets/js/main.js           mobile nav, series dropdown, quote-form handler, footer year
+assets/js/main.js           mobile nav, series dropdown, build rotator, quote-form handler, footer year
 assets/img/                 logo, favicon, photography
 ```
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260922`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260923`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -44,24 +44,17 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
-All three also carry photography in three places — beside or under the feature copy, a `#gallery`
-section of finished builds between the specs and the slip layouts, and a layout shot inside each of
-the single- and double-slip cards.
+All three carry photography under the feature copy and inside each of the single- and double-slip
+cards. Timber and Aluminum also have a `#gallery` section of finished builds between the specs and
+the slip layouts; **Premier does not** — its four build photographs are the rotator in the spec
+aside instead (below).
 
-**The feature sections differ.** Premier's `#built` is `.feature-rows`: each standard feature is one
-passage, its shot beside its copy, sides alternating down the section, no rules or cards, and no
-captions because the heading next to a shot names it. Timber and Aluminum still use the older
-`.features` grid with a detached `shots cols-3 square strip` beneath it, because their headings do
-not name their photographs (see "Which copy is real") and pairing them off would only make the
-mismatch plainer. Move them onto `.feature-rows` once their copy is corrected.
-
-The galleries, and the two remaining strips, are built from the one `.shots` grid, whose column
-count and frame shape are separate modifiers:
+The detail strips and galleries are built from the one `.shots` grid, whose column count and frame
+shape are separate modifiers:
 
 | row | markup |
 | --- | --- |
-| detail strip (Timber, Aluminum) | `shots cols-3 square strip` |
-| Premier gallery, four shots | `shots cols-4 wide` |
+| detail strip (all three) | `shots cols-3 square strip` |
 | Timber gallery, three shots | `shots cols-3 wide` |
 | Aluminum gallery, six shots | `shots cols-3 square` |
 
@@ -86,8 +79,16 @@ already selected.
 
 The roof line art is inline SVG drawn with `stroke="currentColor"`, so the same markup reads
 correctly on dark and on pale backgrounds — it is a front elevation, and the roofline is what
-distinguishes the three (hip / gable / arched). The spec aside on each series page is the last
-place it appears — every other tile, hero and card now carries a photograph.
+distinguishes the three (hip / gable / arched). It survives only in the Timber and Aluminum spec
+asides; everywhere else now carries a photograph.
+
+Premier's spec aside holds a `[data-rotator]` in its place: the four build photographs stacked in
+one 4:3 frame and cross-faded, advancing every five seconds. `main.js` builds the dot controls, so
+a page without JavaScript shows one still photograph rather than buttons that do nothing, and skips
+the timer entirely under `prefers-reduced-motion`. Rotation also pauses while the rotator is
+hovered or holds keyboard focus, and stops for good once a dot is clicked. Any page can take one:
+drop a `.rotator > .rotator-frame` of `<img>` in, mark the first `is-active`, and `main.js` finds
+it.
 
 Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 `styles.css`; change them there rather than in individual rules.

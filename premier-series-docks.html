@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260922">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260923">
 </head>
 <body>
 
@@ -93,34 +93,38 @@
   <div class="wrap">
     <h2>Standard features</h2>
     <p class="lede">These three come standard on every Premier build.</p>
-    <!-- each shot runs beside the copy it belongs to, sides alternating, so the
-         section reads as three passages rather than a grid of boxes. The heading
-         beside it names it, so no shot carries a caption. -->
-    <div class="feature-rows">
-      <article>
+    <div class="features">
+      <div>
+        <h3>Hip Roof</h3>
+        <p>Our Premier Series hip roof design and composition is second to none in the world of boat docks. Each dock is handcrafted in our shop before it goes to the galvanizer, ensuring the ultimate fit and finish. We take great pride in our roof structures and can confidently say they are stronger than any other option available on the market, providing exceptional value in dock pricing.</p>
+      </div>
+      <div>
+        <h3>Decorative Walkway</h3>
+        <p>We offer truss and tube frame walkways for boat docks. Each option can be arched or flat, and our walkways include sturdy, decorative handrails. This combination of components allows us to build the strongest and most visually appealing walkways on the water, ensuring you get the best value for your dock pricing.</p>
+      </div>
+      <div>
+        <h3>Rot-Free Construction</h3>
+        <p>Whether you desire composite or concrete for your boat docks, our Premier Series Dock is constructed without the use of lumber. Unlike other builders who commonly use lumber for stringers under decking, fascia boards, and bumper mounts, choosing the Premier Series means you get a superior product without these materials.</p>
+      </div>
+    </div>
+    <!-- captions and order track the three headings above, so each photo reads
+         against its feature even though the strip is its own row -->
+    <div class="shots cols-3 square strip">
+      <figure>
         <img src="https://1cfzkm4ioa.ucarecd.net/653e1229-7d65-4497-8f24-b606e333bd5a/premier-hip.webp"
              alt="The hip roof on a Bar H Premier Series dock" width="1200" height="1200" loading="lazy" decoding="async">
-        <div>
-          <h3>Hip Roof</h3>
-          <p>Our Premier Series hip roof design and composition is second to none in the world of boat docks. Each dock is handcrafted in our shop before it goes to the galvanizer, ensuring the ultimate fit and finish. We take great pride in our roof structures and can confidently say they are stronger than any other option available on the market, providing exceptional value in dock pricing.</p>
-        </div>
-      </article>
-      <article>
+        <figcaption>Hip Roof</figcaption>
+      </figure>
+      <figure>
         <img src="https://1cfzkm4ioa.ucarecd.net/323b9e93-d3a0-49ec-87f3-02df0fd26533/premier-walkway.webp"
              alt="A decorative truss-frame walkway with handrails on a Bar H Premier Series dock" width="1200" height="1200" loading="lazy" decoding="async">
-        <div>
-          <h3>Decorative Walkway</h3>
-          <p>We offer truss and tube frame walkways for boat docks. Each option can be arched or flat, and our walkways include sturdy, decorative handrails. This combination of components allows us to build the strongest and most visually appealing walkways on the water, ensuring you get the best value for your dock pricing.</p>
-        </div>
-      </article>
-      <article>
+        <figcaption>Decorative Walkway</figcaption>
+      </figure>
+      <figure>
         <img src="https://1cfzkm4ioa.ucarecd.net/16c069c7-2567-45bc-9110-020626445373/premier-rotfree.webp"
              alt="Rot-free decking on a Bar H Premier Series dock, built without lumber" width="1200" height="1200" loading="lazy" decoding="async">
-        <div>
-          <h3>Rot-Free Construction</h3>
-          <p>Whether you desire composite or concrete for your boat docks, our Premier Series Dock is constructed without the use of lumber. Unlike other builders who commonly use lumber for stringers under decking, fascia boards, and bumper mounts, choosing the Premier Series means you get a superior product without these materials.</p>
-        </div>
-      </article>
+        <figcaption>Rot-Free Construction</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -148,47 +152,24 @@
         </tbody>
       </table>
       <aside class="spec-aside">
-        <div class="art">
-          <svg viewBox="0 0 480 300" fill="none" stroke="currentColor" stroke-width="6"
-               stroke-linejoin="round" stroke-linecap="round" role="img" aria-labelledby="art-spec">
-            <title id="art-spec">Front elevation of a Premier Series dock: a hip roof sloping on all four sides, carried on steel posts over a covered slip.</title>
-            <path d="M40 118 L146 52 H334 L440 118 Z"/>
-            <path d="M72 118 V228 M408 118 V228"/>
-            <path d="M30 228 h420 v10 H30 Z"/>
-            <path d="M62 238 h100 v26 H62 Z"/>
-            <path d="M318 238 h100 v26 H318 Z"/>
-            <path d="M14 284 q28 -13 56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0 t56 0"
-                  stroke-width="5" opacity=".5"/>
-          </svg>
+        <!-- Premier builds on rotation. Without JS the first slide simply stays put:
+             main.js adds the dots and the timer, and leaves the timer out under
+             prefers-reduced-motion. -->
+        <div class="rotator" data-rotator aria-label="Premier Series builds">
+          <div class="rotator-frame">
+          <img class="is-active" src="https://1cfzkm4ioa.ucarecd.net/ce63592f-e3ad-4bc1-8cc3-ff1fa33c71a6/premier%20(gallery1).webp"
+               alt="A Bar H Premier Series dock" width="1246" height="1246" loading="lazy" decoding="async">
+          <img src="https://1cfzkm4ioa.ucarecd.net/25d0e19e-3f58-4655-82bd-0f00271bed10/premier%20(gallery2).webp"
+               alt="A Bar H Premier Series dock" width="1023" height="769" loading="lazy" decoding="async">
+          <img src="https://1cfzkm4ioa.ucarecd.net/ee9f39b9-a350-4f0e-a105-c0bfeaa57dea/premier%20(gallery3).webp"
+               alt="A Bar H Premier Series dock" width="1023" height="610" loading="lazy" decoding="async">
+          <img src="https://1cfzkm4ioa.ucarecd.net/c9ba013d-291f-4bf3-b67a-3da189486513/premier%20(gallery4).webp"
+               alt="A Bar H Premier Series dock" width="1920" height="1920" loading="lazy" decoding="async">
+          </div>
         </div>
         <h3>Why the hip roof costs more</h3>
         <p>Four slopes mean four hip rafters, a shorter ridge and more cuts than a gable of the same footprint — more fabrication for the same square feet of cover. What you get back is a roof with no flat end wall, and a dock that looks finished from every direction on the water rather than only from the front.</p>
       </aside>
-    </div>
-  </div>
-</section>
-
-<section id="gallery">
-  <div class="wrap">
-    <h2>Premier Series builds</h2>
-    <p class="lede">Finished Premier docks on the water. Every one is drawn to its own shoreline, so no two are quite the same.</p>
-    <div class="shots cols-4 wide">
-      <figure>
-        <img src="https://1cfzkm4ioa.ucarecd.net/ce63592f-e3ad-4bc1-8cc3-ff1fa33c71a6/premier%20(gallery1).webp"
-             alt="A Bar H Premier Series dock" width="1246" height="1246" loading="lazy" decoding="async">
-      </figure>
-      <figure>
-        <img src="https://1cfzkm4ioa.ucarecd.net/25d0e19e-3f58-4655-82bd-0f00271bed10/premier%20(gallery2).webp"
-             alt="A Bar H Premier Series dock" width="1023" height="769" loading="lazy" decoding="async">
-      </figure>
-      <figure>
-        <img src="https://1cfzkm4ioa.ucarecd.net/ee9f39b9-a350-4f0e-a105-c0bfeaa57dea/premier%20(gallery3).webp"
-             alt="A Bar H Premier Series dock" width="1023" height="610" loading="lazy" decoding="async">
-      </figure>
-      <figure>
-        <img src="https://1cfzkm4ioa.ucarecd.net/c9ba013d-291f-4bf3-b67a-3da189486513/premier%20(gallery4).webp"
-             alt="A Bar H Premier Series dock" width="1920" height="1920" loading="lazy" decoding="async">
-      </figure>
     </div>
   </div>
 </section>
@@ -562,6 +543,6 @@
 }
 </script>
 
-<script src="assets/js/main.js?v=20260922" defer></script>
+<script src="assets/js/main.js?v=20260923" defer></script>
 </body>
 </html>
