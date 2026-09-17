@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260930`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261001`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -75,22 +75,23 @@ features fills. `main.js` writes `--run` (0 to 1) on the section each frame and 
 from it in CSS, so there is one source of truth for how far through the section you are. The rail
 only exists while pinned — off a pinned viewport it would be measuring nothing.
 
-Both rules wait on an `is-pinned` class that `main.js` adds only at `(min-width: 901px) and
-(min-height: 720px)` with motion allowed, re-evaluated on resize and on either media query
-changing. Anything smaller, a `prefers-reduced-motion` setting, or no JavaScript at all collapses
-the track to its natural height and leaves an ordinary accordion that scrolls past like any other
-section — scroll-pinning is disorienting enough that it should never be the only way through.
+Both rules wait on an `is-pinned` class that `main.js` adds above 900px wide, with motion allowed,
+and only when the block will fit the viewport. Anything else — a narrow screen, a short one, a
+`prefers-reduced-motion` setting, no JavaScript at all — collapses the track to its natural height
+and leaves an ordinary accordion that scrolls past like any other section. Scroll-pinning is
+disorienting enough that it should never be the only way through.
 
-The 720px floor is doing real work. The block reaches 623px at its tallest (901–950px wide, where
-the shot sits above the copy rather than in it), so a shorter viewport would hold part of it
-off-screen, and the pin is exactly what makes that part unreachable. A short window is also a fast
-one: the held scroll is a quarter screen per feature, which on a 480px-tall window is ~120px —
-about one wheel notch, so a single flick would skip the section entirely. Above the floor every
-viewport gets at least 180px per feature.
+**The fit is measured, not assumed.** Pinning is exactly what makes anything off-screen
+unreachable, so the block has to fit; but the block runs 623px at the narrow end of the pinned
+range, where the shot sits above the copy, and only 436px once it floats into it. A fixed height
+threshold picked for the worst case refuses laptops with room to spare — a 1366x768 screen leaves
+about 620px of viewport, which holds the 436px block easily. `blockFits()` measures instead,
+reading the tallest panel off `scrollHeight` so it need not open one to size it, and `settle()`
+re-runs it on resize and load.
 
-Phones never pin; they get the accordion. Tablets in landscape do, because they clear both
-thresholds — if that turns out to feel wrong under inertial scrolling, adding `and (hover: hover)`
-to the same query confines pinning to pointer devices.
+Phones and tablets in portrait never pin; they get the accordion. Tablets in landscape do — if that
+reads badly under inertial scrolling, adding `and (hover: hover)` to the width query confines
+pinning to pointer devices.
 
 Two measurements drove the layout. The old three-column grid ran the copy at 40–45 characters a
 line, under the readable band; giving the description its own column puts every width from 1440px

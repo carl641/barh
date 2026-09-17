@@ -288,13 +288,11 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
    motion setting or no JavaScript all get an ordinary accordion that scrolls
    past like any other section.
 
-   The held part is a quarter screen per feature, long enough to read and short
-   enough not to feel held. main.js will not pin a viewport under 720px tall,
-   which is what keeps that honest: the block runs to 623px at its tallest, so
-   a shorter screen would hold part of it off-screen where the pin makes it
-   unreachable, and a quarter of a short screen is ~120px per feature — about
-   one wheel notch, so a single flick would skip the section. */
-.is-pinned .feature-track{height:175vh}
+   The held part is a quarter screen per feature — long enough to read, short
+   enough not to feel held — with a 540px floor under it, because a quarter of
+   a short screen is ~120px, about one wheel notch, and a single flick would
+   then skip the section. The floor only binds below a 720px-tall viewport. */
+.is-pinned .feature-track{height:calc(100vh + max(75vh, 540px))}
 .is-pinned .feature-pin{position:sticky;top:0;min-height:100vh;display:grid;align-content:center}
 
 /* Nothing standing still is what reads as stuck, so while the section is held
