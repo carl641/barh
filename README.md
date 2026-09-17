@@ -17,7 +17,7 @@ assets/img/                 logo, favicon, photography
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260921`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260922`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -44,16 +44,23 @@ how a dock gets built → founders → quote form → footer.
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
 
-All three also carry photography in the same three places — a detail strip inside "what sets it
-apart", a `#gallery` section of finished builds between the specs and the slip layouts, and a
-layout shot inside each of the single- and double-slip cards.
+All three also carry photography in three places — beside or under the feature copy, a `#gallery`
+section of finished builds between the specs and the slip layouts, and a layout shot inside each of
+the single- and double-slip cards.
 
-The strips and galleries are built from the one `.shots` grid, whose column count and frame shape
-are separate modifiers:
+**The feature sections differ.** Premier's `#built` is `.feature-rows`: each standard feature is one
+passage, its shot beside its copy, sides alternating down the section, no rules or cards, and no
+captions because the heading next to a shot names it. Timber and Aluminum still use the older
+`.features` grid with a detached `shots cols-3 square strip` beneath it, because their headings do
+not name their photographs (see "Which copy is real") and pairing them off would only make the
+mismatch plainer. Move them onto `.feature-rows` once their copy is corrected.
+
+The galleries, and the two remaining strips, are built from the one `.shots` grid, whose column
+count and frame shape are separate modifiers:
 
 | row | markup |
 | --- | --- |
-| detail strip (all three) | `shots cols-3 square strip` |
+| detail strip (Timber, Aluminum) | `shots cols-3 square strip` |
 | Premier gallery, four shots | `shots cols-4 wide` |
 | Timber gallery, three shots | `shots cols-3 wide` |
 | Aluminum gallery, six shots | `shots cols-3 square` |
