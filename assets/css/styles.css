@@ -286,9 +286,14 @@ footer .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;
 /* Scroll-pinned stepping. Both rules wait on `is-pinned`, which main.js adds
    only on a wide viewport with motion allowed, so a narrow screen, a reduced
    motion setting or no JavaScript all get an ordinary accordion that scrolls
-   past like any other section. 175vh is a quarter screen of scroll per feature
-   once the section settles — long enough to read, short enough not to feel
-   held. */
+   past like any other section.
+
+   The held part is a quarter screen per feature, long enough to read and short
+   enough not to feel held. main.js will not pin a viewport under 720px tall,
+   which is what keeps that honest: the block runs to 623px at its tallest, so
+   a shorter screen would hold part of it off-screen where the pin makes it
+   unreachable, and a quarter of a short screen is ~120px per feature — about
+   one wheel notch, so a single flick would skip the section. */
 .is-pinned .feature-track{height:175vh}
 .is-pinned .feature-pin{position:sticky;top:0;min-height:100vh;display:grid;align-content:center}
 
