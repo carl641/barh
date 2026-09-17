@@ -11,13 +11,13 @@ premier-series-docks.html   Premier Series (steel, hip roof)
 timber-series-docks.html    Timber Series (steel tube trusses, gable roof)
 aluminum-series.html        Aluminum Series (extruded aluminum)
 assets/css/styles.css       all styles (design tokens at the top)
-assets/js/main.js           mobile nav, series dropdown, build rotator, quote-form handler, footer year
+assets/js/main.js           mobile nav, series dropdown, feature shots, build rotator, quote form, footer year
 assets/img/                 logo, favicon, photography
 ```
 
 File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260923`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20260924`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -49,12 +49,23 @@ cards. Timber and Aluminum also have a `#gallery` section of finished builds bet
 the slip layouts; **Premier does not** — its four build photographs are the rotator in the spec
 aside instead (below).
 
-The detail strips and galleries are built from the one `.shots` grid, whose column count and frame
-shape are separate modifiers:
+**The feature shots differ.** Timber and Aluminum still show three captioned squares in a row.
+Premier shows one `[data-feature-shots]` frame instead: the three shots stacked and cross-faded,
+and hovering a feature above brings its shot forward. Nothing is captioned there, because the
+feature whose shot is showing keeps its blue rule while the other two fade to the hairline — that,
+rather than a name printed under the image, is what says whose shot it is. With no pointer on the
+section the frame drifts through the three every 4.5s, so they are seen without hovering at all;
+`main.js` skips the drift under `prefers-reduced-motion` and adds the `is-linked` class that does
+the dimming, so with no JavaScript all three rules stay blue and the first shot simply sits there.
+Hovering is the only way to steer it — the feature blocks are prose, not controls, so they take no
+focus and a keyboard visitor sees the drift instead.
+
+Timber and Aluminum's strips and the two galleries are built from the one `.shots` grid, whose
+column count and frame shape are separate modifiers:
 
 | row | markup |
 | --- | --- |
-| detail strip (all three) | `shots cols-3 square strip` |
+| detail strip (Timber, Aluminum) | `shots cols-3 square strip` |
 | Timber gallery, three shots | `shots cols-3 wide` |
 | Aluminum gallery, six shots | `shots cols-3 square` |
 
