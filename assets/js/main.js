@@ -133,10 +133,7 @@
 
     if (featureTrack) {
       var section = featureTrack.closest('section');
-      /* Wide enough for the two columns, and tall enough to hold the whole
-         block on screen — it reaches 623px — with room for a quarter screen
-         of scroll per feature. */
-      var roomy = window.matchMedia('(min-width: 901px) and (min-height: 720px)');
+      var roomy = window.matchMedia('(min-width: 901px)');
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
       var step = -1;
       var queued = false;
@@ -205,8 +202,33 @@
         });
       };
 
+      /* Pinning is what makes anything off-screen unreachable, so only pin when
+         the whole block will fit. Measured rather than assumed: the block runs
+         to 623px at the narrow end of the pinned range, where the shot sits
+         above the copy, but only 436px once it floats into it — so a fixed
+         height threshold refuses laptops that have room to spare. A collapsed
+         panel still reports its content height through scrollHeight, so the
+         tallest one can be measured without opening it. */
+      var blockFits = function () {
+        var tallest = 0;
+        var openNow = 0;
+
+        Array.prototype.forEach.call(rows, function (row) {
+          var inner = row.querySelector('.panel-inner');
+          tallest = Math.max(tallest, inner.scrollHeight);
+          if (row.classList.contains('is-open')) {
+            openNow = inner.getBoundingClientRect().height;
+          }
+        });
+
+        var intro = section.querySelector('.feature-intro').getBoundingClientRect().height;
+        var list = featureList.getBoundingClientRect().height - openNow + tallest;
+
+        return Math.max(intro, list) + 72 <= window.innerHeight;
+      };
+
       var settle = function () {
-        var pin = roomy.matches && !calm.matches;
+        var pin = roomy.matches && !calm.matches && blockFits();
         section.classList.toggle('is-pinned', pin);
         if (pin) { step = -1; stepTo(); }
         else { section.style.removeProperty('--run'); }
@@ -214,6 +236,7 @@
 
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', settle);
+      window.addEventListener('load', settle);
       if (roomy.addEventListener) roomy.addEventListener('change', settle);
       if (calm.addEventListener) calm.addEventListener('change', settle);
       settle();
