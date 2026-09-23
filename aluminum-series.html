@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261009">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261010">
 </head>
 <body>
 
@@ -46,7 +46,18 @@
           <li><a href="aluminum-series.html" aria-current="page">Aluminum Series <small>Aluminum · corrosion resistant</small></a></li>
         </ul>
       </li>
-      <li><a href="index.html#areas">Where we build</a></li>
+      <li class="has-sub">
+        <a class="sub-link" href="index.html#areas">Where we build</a>
+        <button class="sub-toggle" type="button" aria-expanded="false"
+                aria-controls="sub-areas" aria-label="Service areas">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>
+        </button>
+        <ul class="sub" id="sub-areas">
+          <li><a href="ohio-river-valley.html">Ohio River Valley <small>Henderson · Evansville · Owensboro</small></a></li>
+          <li><a href="land-between-the-lakes.html">Kentucky Lake &amp; Lake Barkley <small>Grand Rivers · Cadiz · Murray</small></a></li>
+          <li><a href="middle-tennessee-corridor.html">Clarksville–Nashville <small>Nashville · Clarksville · Hopkinsville</small></a></li>
+        </ul>
+      </li>
       <li><a href="index.html#process">How it works</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="#quote">Accessories</a></li>
@@ -409,29 +420,29 @@
       <div>
         <h4>Kentucky Lake &amp; Barkley</h4>
         <ul>
-          <li><a href="index.html#areas">Docks in Grand Rivers</a></li>
-          <li><a href="index.html#areas">Docks in Calvert City</a></li>
-          <li><a href="index.html#areas">Docks in Cadiz</a></li>
-          <li><a href="index.html#areas">Docks in Murray</a></li>
-          <li><a href="index.html#areas">Docks in Paris, TN</a></li>
+          <li><a href="land-between-the-lakes.html">Docks in Grand Rivers</a></li>
+          <li><a href="land-between-the-lakes.html">Docks in Calvert City</a></li>
+          <li><a href="land-between-the-lakes.html">Docks in Cadiz</a></li>
+          <li><a href="land-between-the-lakes.html">Docks in Murray</a></li>
+          <li><a href="land-between-the-lakes.html">Docks in Paris, TN</a></li>
         </ul>
       </div>
       <div>
         <h4>Ohio River</h4>
         <ul>
-          <li><a href="index.html#areas">Docks in Henderson</a></li>
-          <li><a href="index.html#areas">Docks in Owensboro</a></li>
-          <li><a href="index.html#areas">Docks in Evansville</a></li>
-          <li><a href="index.html#areas">Docks in Newburgh</a></li>
+          <li><a href="ohio-river-valley.html">Docks in Henderson</a></li>
+          <li><a href="ohio-river-valley.html">Docks in Owensboro</a></li>
+          <li><a href="ohio-river-valley.html">Docks in Evansville</a></li>
+          <li><a href="ohio-river-valley.html">Docks in Newburgh</a></li>
         </ul>
       </div>
       <div>
         <h4>Clarksville &amp; Nashville</h4>
         <ul>
-          <li><a href="index.html#areas">Docks near Clarksville</a></li>
-          <li><a href="index.html#areas">Docks near Dover, TN</a></li>
-          <li><a href="index.html#areas">Docks near Nashville</a></li>
-          <li><a href="index.html#areas">Hopkinsville &amp; Madisonville</a></li>
+          <li><a href="middle-tennessee-corridor.html">Docks near Clarksville</a></li>
+          <li><a href="middle-tennessee-corridor.html">Docks near Dover, TN</a></li>
+          <li><a href="middle-tennessee-corridor.html">Docks near Nashville</a></li>
+          <li><a href="middle-tennessee-corridor.html">Hopkinsville &amp; Madisonville</a></li>
         </ul>
       </div>
       <div>
@@ -573,6 +584,6 @@
 }
 </script>
 
-<script src="assets/js/main.js?v=20261009" defer></script>
+<script src="assets/js/main.js?v=20261010" defer></script>
 </body>
 </html>

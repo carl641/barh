@@ -6,16 +6,21 @@ JavaScript, no build step.
 ## Structure
 
 ```
-index.html                  homepage
-premier-series-docks.html   Premier Series (steel, hip roof)
-timber-series-docks.html    Timber Series (steel tube trusses, gable roof)
-aluminum-series.html        Aluminum Series (extruded aluminum)
-assets/css/styles.css       all styles (design tokens at the top)
-assets/js/main.js           mobile nav, series dropdown, standard features, build rotator, quote form, footer year
-assets/img/                 logo, favicon, photography
+index.html                      homepage
+premier-series-docks.html       Premier Series (steel, hip roof)
+timber-series-docks.html        Timber Series (steel tube trusses, gable roof)
+aluminum-series.html            Aluminum Series (extruded aluminum)
+ohio-river-valley.html          area page: Henderson, Evansville, Owensboro and the Ohio River towns
+land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
+middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
+assets/css/styles.css           all styles (design tokens at the top)
+assets/js/main.js               mobile nav, nav dropdowns, standard features, build rotator, quote form, footer year
+assets/img/                     logo, favicon, photography
 ```
 
-File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working.
+File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working. The
+three area pages are new URLs that the live site does not have; their slugs are the ones the
+location-page plan proposed.
 
 The nav's **Docks** item is a link and a dropdown at once: `a.sub-link` goes to the homepage
 `#docks` section (`index.html#docks` from a series page), and the caret beside it is its own
@@ -23,9 +28,15 @@ The nav's **Docks** item is a link and a dropdown at once: `a.sub-link` goes to 
 panel still opens on hover, click, tap and keyboard — a single control cannot do both. The panel
 lists the three series only; "all three" is what the label itself now does.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261007`). There is no build step
+**Where we build** works the same way: the label goes to the homepage `#areas` section and its
+caret opens a panel of the three area pages. `main.js` handles any number of these, closing one
+when another opens. The second caret makes the desktop row about 25px wider. With Barlow loaded it
+still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
+1020px the nav's gaps tighten from 28px to 20px.
+
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261010`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
-deploy — which looks exactly like a change that never shipped. **Bump the stamp in all four pages
+deploy — which looks exactly like a change that never shipped. **Bump the stamp in all seven pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
 
 ## Running locally
@@ -45,7 +56,8 @@ from a subdirectory (e.g. a GitHub Pages project site).
 **Homepage:** hero (Vimeo background video) → three dock series → where we build →
 how a dock gets built → founders → quote form → footer.
 
-**Series pages** all share one structure, so a change to the chrome needs making in all three:
+**Series pages** all share one structure, so a change to the chrome needs making in all three —
+and in the homepage and the three area pages, which carry the same header, quote form and footer:
 
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
 slip layouts → add-ons → FAQ → the other two series → quote form → footer.
@@ -142,6 +154,29 @@ Each carries its own `<title>`, meta description, canonical URL and three JSON-L
 (`Product`, `BreadcrumbList`, `FAQPage`). The quote form arrives with that page's series
 already selected.
 
+**Area pages** (Ohio River Valley, Kentucky Lake & Lake Barkley, Clarksville–Nashville) share one
+structure:
+
+hero (breadcrumb, chips, and the area's towns) → the water → the three series → FAQ → the other two
+areas → quote form → footer.
+
+The towns sit in the hero's second column, where a series page has its photograph, because the
+list is what these pages are for. `.hero-towns` is the same translucent panel as `.hero-art`; its
+groups — by state, or by lake on the Kentucky Lake page — flow into two columns and never split. The
+water section reuses `.features`, the three-column grid no other page was using. The other two
+areas are `.area-cards`: white cards with the series tiles' gradient rule, where the whole card is
+the link.
+
+**The copy is deliberately general.** It avoids anything that depends on answers Bar H has not
+given yet: which towns they have built in, whether they file permits for customers, and whether
+they build on the Nashville lakes. The facts it does state are only about the water — which
+agency oversees it, and on two pages a water-level figure. An HTML comment beside each of those
+sections says where the figure came from. Each page carries `Service` (pointing at the homepage
+`LocalBusiness` by its `@id`), `BreadcrumbList` and `FAQPage` JSON-LD. Google retired FAQ rich
+results in 2026, so the markup is kept for consistency with the series pages, not for a search
+feature. The quote form preselects Ohio River on the Ohio page. The other two pages leave the
+water unselected, because each covers more than one option.
+
 The roof line art is inline SVG drawn with `stroke="currentColor"`, so the same markup reads
 correctly on dark and on pale backgrounds — it is a front elevation, and the roofline is what
 distinguishes the three (hip / gable / arched). It survives only in the Timber and Aluminum spec
@@ -195,6 +230,14 @@ Search the source for `TODO`. In rough order of how much it matters:
   repoint the `<img class="ph">` tags at local paths if the site should be self-contained.
 - **`og:image`** at `assets/img/og-cover.jpg` does not exist yet.
 - **Accessories and careers pages.** Those nav and footer links still point at the quote section.
+- **Area-page facts.** The agency and water-level lines on the three area pages were checked
+  against search extracts of TVA, Corps of Engineers and NOAA pages, not the pages themselves.
+  Have Bar H read them through. The town pages the location plan proposes wait on Bar H's
+  answers: which towns they have built in, with photos, and whether they handle permits.
+- **Old live URLs.** The live site has `/dock-construction`, `/about` and `/contact`, which this
+  build does not. Redirect them at launch — `/dock-construction` (its Kentucky Lake & Lake Barkley
+  page) to `/land-between-the-lakes`, `/about` to `/#about`, `/contact` to `/#quote` — or whatever
+  ranking they hold is lost.
 - **Logo.** The header uses the real logo at `assets/img/qt=q_95.webp` (368x200).
   `assets/img/barh-logo.svg` is the old placeholder wordmark, kept unused.
 

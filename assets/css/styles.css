@@ -71,9 +71,15 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .nav .call{font-family:var(--display);font-size:20px;font-weight:600;text-decoration:none;
            color:var(--blue);border-bottom:2px solid var(--blue);white-space:nowrap}
 
-/* series dropdown — "Docks" is a link to the homepage section, and the caret
-   beside it is its own button, so the label can navigate while the panel still
-   opens on hover, click and keyboard */
+/* "Where we build" carries a caret as well as "Docks" now, which makes the row
+   about 25px wider. With Barlow loaded it still fits at 901px, but on the
+   fallback fonts — if the webfont fails — it wraps there. Tighter gaps at the
+   narrow end of the desktop range keep it on one line either way. */
+@media (min-width:901px) and (max-width:1020px){.nav-links{gap:20px}}
+
+/* dropdowns — "Docks" and "Where we build" are links to their homepage sections,
+   and the caret beside each is its own button, so the label can navigate while
+   the panel still opens on hover, click and keyboard */
 .has-sub{position:relative;display:flex;align-items:center;gap:7px}
 .sub-toggle{font:inherit;background:none;border:0;padding:2px;color:var(--navy);opacity:.85;
             cursor:pointer;display:inline-flex;align-items:center}
@@ -85,7 +91,9 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 /* bridges the gap under the trigger so the panel survives the pointer crossing it */
 .sub::before{content:"";position:absolute;inset:-18px 0 100%}
 .has-sub:hover > .sub,.sub-toggle[aria-expanded="true"] + .sub{display:block}
-.sub a{display:block;padding:10px 18px;font-size:16px;opacity:1}
+/* nowrap lets the panel grow to its longest line — the current page's link is
+   set bold, which pushed "Kentucky Lake & Lake Barkley" past the min-width */
+.sub a{display:block;padding:10px 18px;font-size:16px;opacity:1;white-space:nowrap}
 .sub a:hover{background:var(--tint)}
 .sub small{display:block;color:var(--meta);font-size:13.5px;font-weight:400}
 .nav-links [aria-current="page"]{opacity:1;color:var(--blue);font-weight:600}
@@ -126,7 +134,7 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
   .sub::before{display:none}
   .has-sub:hover > .sub{display:none}
   .sub-toggle[aria-expanded="true"] + .sub{display:block}
-  .sub a{padding-left:calc(var(--gutter) + 18px);border-top:1px solid var(--line)}
+  .sub a{padding-left:calc(var(--gutter) + 18px);border-top:1px solid var(--line);white-space:normal}
 }
 
 /* ---------- hero ---------- */
@@ -182,6 +190,9 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .areas ul{list-style:none;columns:2;column-gap:20px;font-size:16px}
 .areas li{padding:3px 0;break-inside:avoid}
 .areas .note{margin-top:18px;font-size:15px;color:var(--muted);border-top:1px solid #e3e9ea;padding-top:14px}
+/* each column's way through to its area page, set like the series card links */
+.areas .more{display:inline-block;margin-top:16px;font-family:var(--display);font-weight:600;font-size:19px;
+             text-decoration:none;color:var(--blue);border-bottom:2px solid var(--blue)}
 @media (max-width:900px){
   .areas{grid-template-columns:1fr}
   .areas > div{border-right:0;border-bottom:1px solid var(--line)}
@@ -536,6 +547,44 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
   .series .to-gallery p{flex:0 0 auto;width:100%;margin-left:0}
   .series .to-gallery .go{flex:0 0 auto;width:auto;margin-left:0}
 }
+
+/* ==========================================================================
+   Area pages (ohio-river-valley / land-between-the-lakes / middle-tennessee-corridor)
+   ========================================================================== */
+
+/* The towns an area covers take the hero's second column, where a series page
+   has its photograph — the list is what these pages are for. Same translucent
+   panel as .hero-art. The groups (by state, or by lake) flow into two columns
+   and a group never splits across them. */
+.hero-towns{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+            border-radius:6px;padding:26px 28px 20px;color:#e7f0fb}
+.hero-towns h2{font-size:28px;color:#fff;margin-bottom:18px}
+.town-groups{columns:2;column-gap:28px}
+.town-groups > div{break-inside:avoid;padding-bottom:16px}
+.town-groups h3{font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+                color:var(--sky);margin-bottom:6px}
+.town-groups ul{list-style:none;font-size:17px}
+.town-groups li{padding:3px 0}
+.town-groups small{margin-left:4px;font-size:13.5px;color:#bcd2ee}
+.hero-towns .note{font-size:15px;color:#bcd2ee;border-top:1px solid rgba(255,255,255,.18);padding-top:14px}
+@media (max-width:560px){.hero-towns{padding:22px 20px 16px}}
+
+/* The other two areas: white cards with the series tiles' gradient rule along
+   the top, no photo, and the whole card is the link. Nothing moves on hover —
+   the heading takes the link colour instead. */
+.area-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.area-cards a{display:flex;flex-direction:column;gap:8px;padding:29px 26px 26px;
+              background:var(--grad) top / 100% 5px no-repeat,#fff;border:1px solid var(--line);
+              text-decoration:none;color:inherit}
+.area-cards h3{font-size:26px;color:var(--navy);margin:0}
+.area-cards p{font-size:16px;color:var(--muted);flex:1}
+.area-cards .go{font-family:var(--display);font-weight:600;font-size:19px;color:var(--blue);
+                border-bottom:2px solid var(--blue);align-self:start;margin-top:6px}
+.area-cards a:hover h3{color:var(--blue)}
+@media (max-width:760px){.area-cards{grid-template-columns:1fr}}
+
+/* a link inside running copy, e.g. corridor pages pointing on to the lakes */
+.features p a,.faq p a{color:var(--blue)}
 
 @media (max-width:420px){
   :root{--gutter:18px}
