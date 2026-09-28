@@ -13,6 +13,7 @@ aluminum-series.html            Aluminum Series (extruded aluminum)
 ohio-river-valley.html          area page: Henderson, Evansville, Owensboro and the Ohio River towns
 land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
+about.html                      about page: the company and the two founders' full bios
 assets/css/styles.css           all styles (design tokens at the top)
 assets/js/main.js               mobile nav, nav dropdowns, standard features, build rotator, quote form, footer year
 assets/img/                     logo, favicon, photography
@@ -34,9 +35,9 @@ when another opens. The second caret makes the desktop row about 25px wider. Wit
 still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
 1020px the nav's gaps tighten from 28px to 20px.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261010`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261028`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
-deploy — which looks exactly like a change that never shipped. **Bump the stamp in all seven pages
+deploy — which looks exactly like a change that never shipped. **Bump the stamp in all eight pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
 
 ## Running locally
@@ -54,7 +55,13 @@ from a subdirectory (e.g. a GitHub Pages project site).
 ## Page anatomy
 
 **Homepage:** hero (Vimeo background video) → three dock series → where we build →
-how a dock gets built → founders → quote form → footer.
+how a dock gets built → founders (short bios, linking to `about.html`) → quote form → footer.
+
+**About page:** hero (breadcrumb, the company statement, and its goal in the second column) →
+the two founders' full bios, portraits alternating sides → the three series → quote form → footer.
+The bios are the founders' own words; the only edits are "Bar H Solutions" for "BARH Solutions",
+"an automotive" for "a automotive", and the lab sentence joined to the one before it. The nav's
+**About** item and the footer's Company column point here on every page.
 
 **Series pages** all share one structure, so a change to the chrome needs making in all three —
 and in the homepage and the three area pages, which carry the same header, quote form and footer:
@@ -234,9 +241,9 @@ Search the source for `TODO`. In rough order of how much it matters:
   against search extracts of TVA, Corps of Engineers and NOAA pages, not the pages themselves.
   Have Bar H read them through. The town pages the location plan proposes wait on Bar H's
   answers: which towns they have built in, with photos, and whether they handle permits.
-- **Old live URLs.** The live site has `/dock-construction`, `/about` and `/contact`, which this
-  build does not. Redirect them at launch — `/dock-construction` (its Kentucky Lake & Lake Barkley
-  page) to `/land-between-the-lakes`, `/about` to `/#about`, `/contact` to `/#quote` — or whatever
+- **Old live URLs.** The live site has `/dock-construction` and `/contact`, which this
+  build does not (`/about` now exists as `about.html`). Redirect them at launch — `/dock-construction` (its Kentucky Lake & Lake Barkley
+  page) to `/land-between-the-lakes`, `/contact` to `/#quote` — or whatever
   ranking they hold is lost.
 - **Logo.** The header uses the real logo at `assets/img/qt=q_95.webp` (368x200).
   `assets/img/barh-logo.svg` is the old placeholder wordmark, kept unused.
