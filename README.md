@@ -35,7 +35,7 @@ when another opens. The second caret makes the desktop row about 25px wider. Wit
 still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
 1020px the nav's gaps tighten from 28px to 20px.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261028`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261029`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in all eight pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -58,7 +58,7 @@ from a subdirectory (e.g. a GitHub Pages project site).
 how a dock gets built → founders (short bios, linking to `about.html`) → quote form → footer.
 
 **About page:** hero (breadcrumb, the company statement, and its goal in the second column) →
-the two founders' full bios, portraits alternating sides → the three series → quote form → footer.
+the two founders' full bios side by side (stacked below 900px) → the three series → quote form → footer.
 The bios are the founders' own words; the only edits are "Bar H Solutions" for "BARH Solutions",
 "an automotive" for "a automotive", and the lab sentence joined to the one before it. The nav's
 **About** item and the footer's Company column point here on every page.
