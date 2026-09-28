@@ -48,9 +48,12 @@ Any static server works, e.g.:
 python3 -m http.server 8000
 ```
 
-then open <http://localhost:8000>. Asset paths are document-relative, so the
-pages also render correctly when opened straight off the filesystem or served
-from a subdirectory (e.g. a GitHub Pages project site).
+then open <http://localhost:8000>. Page links are clean and root-absolute (`/`,
+`/about`, `/#docks`, no `.html`), so the host must serve `/about` from `about.html`.
+Netlify, Cloudflare Pages and GitHub Pages do this by default; `vercel.json` (Vercel) and
+`.htaccess` (Apache) enable it. `python3 -m http.server` does not, so use
+`npx serve` locally (it strips `.html` by default). Asset paths stay document-relative.
+Old `.html` URLs are 301-redirected to the clean ones on Vercel and Apache.
 
 ## Page anatomy
 
