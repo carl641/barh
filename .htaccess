@@ -1,4 +1,9 @@
 RewriteEngine On
+# retired pages -> where their content lives now
+RewriteRule ^about(\.html)?$ /#about [R=301,L,NE]
+RewriteRule ^premier-series-docks(\.html)?$ /aluminum-docks#hip-roof [R=301,L,NE]
+RewriteRule ^timber-series-docks(\.html)?$ /steel-docks [R=301,L]
+RewriteRule ^aluminum-series(\.html)?$ /aluminum-docks [R=301,L]
 # /page.html -> /page (and /index.html -> /)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]

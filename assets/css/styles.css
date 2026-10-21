@@ -208,15 +208,6 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 @media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.steps{grid-template-columns:1fr;gap:24px}}
 
-/* ---------- founders ---------- */
-.founders{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
-.founders figure{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:start}
-.founders .ph{aspect-ratio:3/4;width:100%;height:auto;object-fit:cover;background:linear-gradient(160deg,#dbe8f8,#9fc2ec);border-radius:3px}
-.founders p{font-size:16px;color:var(--muted)}
-.founders small{display:block;color:var(--meta);margin-bottom:8px;font-size:15px}
-@media (max-width:820px){.founders{grid-template-columns:1fr}}
-@media (max-width:480px){.founders figure{grid-template-columns:1fr}.founders .ph{max-width:180px}}
-
 /* ---------- quote ---------- */
 .quote{background:var(--grad);color:#fff}
 .quote h2{color:#fff}
@@ -593,55 +584,75 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 }
 
 /* ==========================================================================
-   About page
+   Homepage: dock types, budget steel, commercial, about
    ========================================================================== */
 
-/* The company's goal takes the hero's second column — the same translucent
-   panel as .hero-towns, holding three lines instead of a town list. */
-.hero-values{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
-             border-radius:6px;padding:26px 28px 24px;color:#e7f0fb}
-.hero-values h2{font-size:28px;color:#fff;margin-bottom:8px}
-.hero-values p{font-size:16px;color:#bcd2ee;margin-bottom:14px}
-.hero-values ul{list-style:none}
-.hero-values li{font-family:var(--display);font-size:24px;font-weight:600;color:#fff;
-                padding:12px 0 12px 20px;border-top:1px solid rgba(255,255,255,.18);position:relative}
-.hero-values li::before{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;
-                        margin-top:-4px;background:var(--sky);border-radius:50%}
-@media (max-width:560px){.hero-values{padding:22px 20px 18px}}
+/* Six aluminum categories as link cards, the area cards' white-with-gradient-
+   rule look. A roof-profile line drawing stands in for a photo until each
+   category has one; it is stroked in currentColor like the spec-aside art. */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.types > *{display:flex;flex-direction:column;gap:8px;padding:26px 24px 24px;
+         background:var(--grad) top / 100% 5px no-repeat,#fff;border:1px solid var(--line);
+         text-decoration:none;color:inherit}
+.types .type-art{width:120px;height:64px;color:var(--blue);margin-bottom:8px}
+.types h3{font-size:26px;color:var(--navy);margin:0}
+.types p{font-size:16px;color:var(--muted);flex:1}
+.types ul{list-style:none;font-size:15px;color:var(--meta);border-top:1px solid var(--line);padding-top:10px}
+.types li{padding:2px 0}
+.types .go{font-family:var(--display);font-weight:600;font-size:19px;color:var(--blue);
+           border-bottom:2px solid var(--blue);align-self:start;margin-top:6px}
+.types a:hover h3{color:var(--blue)}
+.types article{scroll-margin-top:96px}
+.types a.go{text-decoration:none}
+@media (max-width:900px){.types{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.types{grid-template-columns:1fr}}
 
-/* The two founders side by side as equals: each column is a portrait beside
-   the role and name, then the bio, then the facts. The facts sit at the foot
-   of the column so both lists line up whatever the bios' lengths. */
-.bios{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px}
-.bio{display:flex;flex-direction:column}
-.bio-head{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:end;
-            padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--line)}
-.bio .ph{aspect-ratio:3/4;width:100%;height:auto;object-fit:cover;border-radius:3px;
-         background:linear-gradient(160deg,#dbe8f8,#9fc2ec)}
-.bio .role{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:.14em;
-           text-transform:uppercase;color:var(--blue);margin-bottom:6px}
-.bio h3{font-size:clamp(34px,4vw,46px);color:var(--navy);margin:0}
-.bio > p{color:var(--muted)}
-.bio > p + p{margin-top:14px}
-.bio dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin-top:auto;
-        padding-top:20px;border-top:3px solid var(--blue);font-size:16px}
-.bio > p:last-of-type{margin-bottom:26px}
-.bio dt{font-family:var(--display);font-weight:600;font-size:17px;color:var(--navy)}
-.bio dd{color:var(--muted)}
-@media (max-width:900px){
-  .bios{grid-template-columns:1fr;gap:56px}
+/* Steel sits under the aluminum grid as one wide bar: photo, then copy. */
+.budget{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:32px;align-items:center;
+        margin-top:28px;padding:18px;background:var(--tint);border:1px solid var(--line)}
+.budget img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:3px}
+.budget .tag{font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:.14em;
+             text-transform:uppercase;color:var(--blue)}
+.budget h3{font-size:30px;color:var(--navy);margin:4px 0 8px}
+.budget p{font-size:16px;color:var(--muted);max-width:56ch;margin-bottom:14px}
+.budget .go{display:inline-block;font-family:var(--display);font-weight:600;font-size:19px;
+            color:var(--blue);text-decoration:none;border-bottom:2px solid var(--blue)}
+@media (max-width:640px){.budget{grid-template-columns:1fr;gap:18px}}
+
+/* Commercial & community: pitch on the left, what it covers on the right. */
+.commercial{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.commercial .eyebrow{color:var(--blue)}
+.commercial .lede{margin-bottom:28px}
+.checks{list-style:none;background:#fff;border:1px solid var(--line);padding:8px 28px}
+.checks li{padding:18px 0 18px 30px;position:relative;color:var(--muted);font-size:16px}
+.checks li + li{border-top:1px solid var(--line)}
+.checks li::before{content:"";position:absolute;left:0;top:24px;width:12px;height:12px;
+                   border-radius:50%;background:var(--grad)}
+.checks b{display:block;font-family:var(--display);font-size:22px;font-weight:600;color:var(--navy)}
+@media (max-width:900px){.commercial{grid-template-columns:1fr;gap:36px}}
+
+/* About: Tristan's portrait beside his bio, the facts at its foot. */
+.about-bio{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:start;margin-top:48px}
+.about-bio .ph{aspect-ratio:3/4;width:100%;height:auto;object-fit:cover;border-radius:3px;
+               background:linear-gradient(160deg,#dbe8f8,#9fc2ec)}
+.about-bio .role{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:.14em;
+                 text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.about-bio h3{font-size:clamp(34px,4vw,46px);color:var(--navy);margin:0 0 18px}
+.about-bio p{color:var(--muted);max-width:68ch}
+.about-bio p + p{margin-top:14px}
+.about-bio dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin-top:26px;
+              padding-top:20px;border-top:3px solid var(--blue);font-size:16px;max-width:68ch}
+.about-bio dt{font-family:var(--display);font-weight:600;font-size:17px;color:var(--navy)}
+.about-bio dd{color:var(--muted)}
+@media (max-width:760px){
+  .about-bio{grid-template-columns:1fr;gap:28px}
+  .about-bio .ph{max-width:240px}
 }
 @media (max-width:480px){
-  .bio-head{grid-template-columns:110px 1fr;gap:18px}
-  .bio dl{grid-template-columns:1fr;gap:2px}
-  .bio dd{margin-bottom:10px}
+  .about-bio dl{grid-template-columns:1fr;gap:2px}
+  .about-bio dd{margin-bottom:10px}
 }
 
 /* three cards across instead of two */
 .area-cards.cols-3{grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){.area-cards.cols-3{grid-template-columns:1fr}}
-
-/* homepage #about: the way through to the full page */
-.founders-more{margin-top:40px}
-.founders h3 a{text-decoration:none}
-.founders h3 a:hover{color:var(--blue)}
