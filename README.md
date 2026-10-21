@@ -7,19 +7,33 @@ JavaScript, no build step.
 
 ```
 index.html                      homepage
-premier-series-docks.html       Premier Series (steel, hip roof)
-timber-series-docks.html        Timber Series (steel tube trusses, gable roof)
-aluminum-series.html            Aluminum Series (extruded aluminum)
+aluminum-docks.html             aluminum docks: the six styles (platform, gable, hip roof, sun deck,
+                                commercial & community, custom), standard features, specs
+steel-docks.html                steel dock, the budget option (steel tube trusses, gable roof)
 ohio-river-valley.html          area page: Henderson, Evansville, Owensboro and the Ohio River towns
 land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
-about.html                      about page: the company and the two founders' full bios
 assets/css/styles.css           all styles (design tokens at the top)
 assets/js/main.js               mobile nav, nav dropdowns, standard features, build rotator, quote form, footer year
 assets/img/                     logo, favicon, photography
 ```
 
-File names match the live site's URL slugs, so `/premier-series-docks` etc. keep working. The
+## Product line (prototype for review)
+
+The old Premier / Timber / Aluminum series framing is gone. Docks are now grouped as:
+
+- **Aluminum**, in six styles: platform, gable roof, hip roof, sun deck, commercial & community,
+  custom. They share one page, `aluminum-docks.html`, with an anchor per style (`#platform`,
+  `#gable`, `#hip-roof`, `#sun-deck`, `#commercial`, `#custom`). The homepage `#docks` grid links
+  to them. Until each style has its own photo, a roof-profile line drawing (inline SVG,
+  `currentColor`) stands in.
+- **Steel dock**, the budget option (`steel-docks.html`, built from the old Timber page). The
+  higher-tier steel series (Premier) is no longer promoted.
+- **Commercial & community** also gets its own homepage band (`#commercial`) so HOAs,
+  municipalities and larger projects can see that Bar H builds for them.
+
+The old URLs redirect (`vercel.json`, `.htaccess`): `/premier-series-docks` → `/aluminum-docks#hip-roof`,
+`/timber-series-docks` → `/steel-docks`, `/aluminum-series` → `/aluminum-docks`, `/about` → `/#about`. The
 three area pages are new URLs that the live site does not have; their slugs are the ones the
 location-page plan proposed.
 
@@ -27,7 +41,7 @@ The nav's **Docks** item is a link and a dropdown at once: `a.sub-link` goes to 
 `#docks` section (`index.html#docks` from a series page), and the caret beside it is its own
 `button.sub-toggle` that opens the panel. Splitting them is what lets the label navigate while the
 panel still opens on hover, click, tap and keyboard — a single control cannot do both. The panel
-lists the three series only; "all three" is what the label itself now does.
+lists aluminum docks, commercial & community, custom docks and the steel dock.
 
 **Where we build** works the same way: the label goes to the homepage `#areas` section and its
 caret opens a panel of the three area pages. `main.js` handles any number of these, closing one
@@ -35,9 +49,9 @@ when another opens. The second caret makes the desktop row about 25px wider. Wit
 still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
 1020px the nav's gaps tighten from 28px to 20px.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261029`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261021`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
-deploy — which looks exactly like a change that never shipped. **Bump the stamp in all eight pages
+deploy — which looks exactly like a change that never shipped. **Bump the stamp in all six pages
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
 
 ## Running locally
@@ -49,8 +63,8 @@ python3 -m http.server 8000
 ```
 
 then open <http://localhost:8000>. Page links are clean and relative (`./`,
-`about`, `./#docks`, no `.html`), so the site works from a domain root or a subfolder
-preview such as `/barh/`; the host must serve `about` from `about.html`.
+`steel-docks`, `./#docks`, no `.html`), so the site works from a domain root or a subfolder
+preview such as `/barh/`; the host must serve `steel-docks` from `steel-docks.html`.
 Netlify, Cloudflare Pages and GitHub Pages do this by default; `vercel.json` (Vercel) and
 `.htaccess` (Apache) enable it. `python3 -m http.server` does not, so use
 `npx serve` locally (it strips `.html` by default). Asset paths stay document-relative.
@@ -58,16 +72,16 @@ Old `.html` URLs are 301-redirected to the clean ones on Vercel and Apache.
 
 ## Page anatomy
 
-**Homepage:** hero (Vimeo background video) → three dock series → where we build →
-how a dock gets built → founders (short bios, linking to `about.html`) → quote form → footer.
+**Homepage:** hero (Vimeo background video) → dock types (six aluminum style cards, then the
+steel dock as a budget bar) → commercial & community → where we build → how a dock gets built →
+about (Tristan Hagan's photo and full bio, in his own words) → quote form → footer.
 
-**About page:** hero (breadcrumb, the company statement, and its goal in the second column) →
-the two founders' full bios side by side (stacked below 900px) → the three series → quote form → footer.
-The bios are the founders' own words; the only edits are "Bar H Solutions" for "BARH Solutions",
-"an automotive" for "a automotive", and the lab sentence joined to the one before it. The nav's
-**About** item and the footer's Company column point here on every page.
+There is no separate About page any more; the nav's **About** item and the footer's Company column
+point to the homepage `#about` section. Jake Bartlett is no longer named anywhere on the site. The
+About copy says Tristan leads the company "backed by a team", so it still conveys people behind
+the business without naming anyone else as an owner or partner.
 
-**Series pages** all share one structure, so a change to the chrome needs making in all three —
+**Product pages** all share one structure, so a change to the chrome needs making in all three —
 and in the homepage and the three area pages, which carry the same header, quote form and footer:
 
 hero (breadcrumb, spec chips, series photo) → what sets it apart → specifications →
@@ -208,8 +222,13 @@ Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 
 Search the source for `TODO`. In rough order of how much it matters:
 
-- **Phone numbers and email.** The quote sections list `(270) 748-2525` (Jake Bartlett) and
-  `(270) 869-5580` (Tristan Hagan). Also recovered from search results rather than read off
+- **Product line review.** Confirm the six aluminum styles and their one-line descriptions, Tristan's
+  title ("Founder · Mechanical engineer" is a placeholder), and prices: the steel dock shows the old
+  Timber prices ($34,999 / $42,999) and the aluminum slip cards the old Aluminum Series prices
+  ($39,999 / $48,999). Neither has been confirmed for the new lineup.
+
+- **Phone numbers and email.** The quote sections list `(270) 869-5580` (Tristan Hagan); Jake's
+  line was removed. Also recovered from search results rather than read off
   `barhsolutions.com/contact` — confirm before publishing. The `info@barhsolutions.com` address
   is still a stand-in.
 - **Series specifications.** The spec tables are written to stay true for any build ("chosen at
@@ -253,6 +272,10 @@ Search the source for `TODO`. In rough order of how much it matters:
   `assets/img/barh-logo.svg` is the old placeholder wordmark, kept unused.
 
 ## Which copy is real
+
+*History from the series-page era. The Timber page is now `steel-docks.html`, the Aluminum page
+`aluminum-docks.html`, and the Premier page is retired. Its "When you choose Timber" line now
+reads "When you choose Bar H".*
 
 The site itself was unreachable from the build environment, so the three series pages were first
 written from search-engine indexes: the headline sentence on each was real, the supporting copy

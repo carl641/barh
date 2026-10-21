@@ -1,1 +1,10 @@
-{ "cleanUrls": true, "trailingSlash": false }
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/about", "destination": "/#about", "permanent": true },
+    { "source": "/premier-series-docks", "destination": "/aluminum-docks#hip-roof", "permanent": true },
+    { "source": "/timber-series-docks", "destination": "/steel-docks", "permanent": true },
+    { "source": "/aluminum-series", "destination": "/aluminum-docks", "permanent": true }
+  ]
+}
