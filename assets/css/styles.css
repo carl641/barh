@@ -588,13 +588,14 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
    ========================================================================== */
 
 /* Six aluminum categories as link cards, the area cards' white-with-gradient-
-   rule look. A roof-profile line drawing stands in for a photo until each
-   category has one; it is stroked in currentColor like the spec-aside art. */
+   rule look. Each opens on its category photo, bled to the card edges under
+   the gradient rule; the same card is used on the home and aluminum pages. */
 .types{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
 .types > *{display:flex;flex-direction:column;gap:8px;padding:26px 24px 24px;
          background:var(--grad) top / 100% 5px no-repeat,#fff;border:1px solid var(--line);
          text-decoration:none;color:inherit}
-.types .type-art{width:120px;height:64px;color:var(--blue);margin-bottom:8px}
+.types .type-photo{display:block;width:calc(100% + 48px);max-width:none;height:auto;aspect-ratio:4/3;
+                  object-fit:cover;margin:-21px -24px 10px;background:var(--line)}
 .types h3{font-size:26px;color:var(--navy);margin:0}
 .types p{font-size:16px;color:var(--muted);flex:1}
 .types ul{list-style:none;font-size:15px;color:var(--meta);border-top:1px solid var(--line);padding-top:10px}
