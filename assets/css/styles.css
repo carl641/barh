@@ -180,21 +180,24 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 @media (max-width:900px){.series{grid-template-columns:1fr}}
 
 /* ---------- where we build ---------- */
-.areas{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:40px;background:#fff}
-.areas > div{padding:32px 28px;border-right:1px solid var(--line)}
-.areas > div:last-child{border-right:0}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);margin-top:40px;background:#fff}
+.areas > div{padding:32px 28px}
+/* 2x2: rule between the columns and between the rows */
+.areas > div:nth-child(odd){border-right:1px solid var(--line)}
+.areas > div:nth-child(-n+2){border-bottom:1px solid var(--line)}
 .areas h3{display:flex;align-items:center;gap:10px}
 .areas h3 i{width:14px;height:14px;border-radius:50%;flex:none}
 .areas .tag{font-size:15px;color:var(--meta);margin-bottom:16px}
 .areas ul{list-style:none;columns:2;column-gap:20px;font-size:16px}
 .areas li{padding:3px 0;break-inside:avoid}
+.areas li small{display:block;font-size:14px;color:var(--meta)}
 .areas .note{margin-top:18px;font-size:15px;color:var(--muted);border-top:1px solid #e3e9ea;padding-top:14px}
 /* each column's way through to its area page, set like the series card links */
 .areas .more{display:inline-block;margin-top:16px;font-family:var(--display);font-weight:600;font-size:19px;
              text-decoration:none;color:var(--blue);border-bottom:2px solid var(--blue)}
 @media (max-width:900px){
   .areas{grid-template-columns:1fr}
-  .areas > div{border-right:0;border-bottom:1px solid var(--line)}
+  .areas > div,.areas > div:nth-child(odd){border-right:0;border-bottom:1px solid var(--line)}
   .areas > div:last-child{border-bottom:0}
 }
 
