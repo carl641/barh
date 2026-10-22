@@ -261,7 +261,7 @@ Search the source for `TODO`. In rough order of how much it matters:
   unreachable from the build environment and the files could not be downloaded. Pull them down and
   repoint the `<img class="ph">` tags at local paths if the site should be self-contained.
 - **`og:image`** at `assets/img/og-cover.jpg` does not exist yet.
-- **Accessories and careers pages.** Those nav and footer links still point at the quote section.
+- **Accessories page.** The Accessories nav and footer links still point at the quote section.
 - **Area-page facts.** The agency and water-level lines on the three area pages were checked
   against search extracts of TVA, Corps of Engineers and NOAA pages, not the pages themselves.
   Have Bar H read them through. The town pages the location plan proposes wait on Bar H's
