@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261021b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261022">
 </head>
 <body>
 
@@ -231,46 +231,9 @@
       </div>
     </div>
 
-    <!-- TODO: point `action` at the real form handler (Jotform, Formspree, Netlify, etc.).
-         Until then main.js intercepts submit and shows an inline confirmation. -->
-    <form id="quote-form" method="post" action="#" novalidate>
-      <div class="row">
-        <div><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
-        <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-      </div>
-      <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
-      <div class="row">
-        <div>
-          <label for="water">Where is the dock going?</label>
-          <select id="water" name="water" required>
-            <option value="">Choose one</option>
-            <option>Kentucky Lake</option>
-            <option>Lake Barkley</option>
-            <option>Ohio River</option>
-            <option>Nashville-area lake</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div>
-          <label for="series">Dock type</label>
-          <select id="series" name="dock_type">
-            <option>Not sure yet</option>
-            <option>Aluminum — platform</option>
-            <option>Aluminum — gable roof</option>
-            <option>Aluminum — hip roof</option>
-            <option>Aluminum — sun deck</option>
-            <option>Commercial / community</option>
-            <option>Custom</option>
-            <option>Steel dock</option>
-          </select>
-        </div>
-      </div>
-      <div><label for="town">Nearest town to the lot</label><input id="town" name="town" placeholder="e.g. Cadiz, Grand Rivers, Buchanan"></div>
-      <div><label for="msg">Boats, lifts, anything else</label><textarea id="msg" name="message"></textarea></div>
-      <button class="btn btn-primary" type="submit">Send request</button>
-      <p class="form-status" role="status" aria-live="polite"></p>
-      <p class="form-note">We typically reply within one business day.</p>
-    </form>
+    <div class="quote-embed">
+      <script type="text/javascript" src="https://form.jotform.com/jsform/262937999268079"></script>
+    </div>
   </div>
 </section>
 
@@ -425,6 +388,6 @@
 }
 </script>
 
-<script src="assets/js/main.js?v=20261021" defer></script>
+<script src="assets/js/main.js?v=20261022" defer></script>
 </body>
 </html>

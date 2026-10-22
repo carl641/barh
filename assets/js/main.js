@@ -74,30 +74,6 @@
     });
   }
 
-  /* ---------- quote form ----------
-     Placeholder handler: until `action` points at a real endpoint, confirm
-     inline rather than posting the lead into the void. */
-  var form = document.getElementById('quote-form');
-
-  if (form) {
-    var status = form.querySelector('.form-status');
-
-    form.addEventListener('submit', function (e) {
-      var wired = form.getAttribute('action') && form.getAttribute('action') !== '#';
-      if (wired) return; // real endpoint configured — let the browser post it
-
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      form.reset();
-      if (status) status.textContent = "Thanks — we'll be in touch within one business day.";
-    });
-  }
-
   /* ---------- standard features ----------
      Rows open on click, tap or keyboard focus. Where the viewport is wide
      enough and motion is not being avoided, the section also pins: it holds
