@@ -13,6 +13,8 @@ steel-docks.html                steel dock, the budget option (steel tube trusse
 ohio-river-valley.html          area page: Henderson, Evansville, Owensboro and the Ohio River towns
 land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
+aluminum-vs-wood-docks-providence-ky.html
+                                article: aluminum vs. wood docks, aimed at Providence, KY
 assets/css/styles.css           all styles (design tokens at the top)
 assets/js/main.js               mobile nav, nav dropdowns, standard features, build rotator, quote form, footer year
 assets/img/                     logo, favicon, photography
@@ -49,9 +51,9 @@ when another opens. The second caret makes the desktop row about 25px wider. Wit
 still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
 1020px the nav's gaps tighten from 28px to 20px.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261021`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261022b`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
-deploy — which looks exactly like a change that never shipped. **Bump the stamp in all six pages
+deploy — which looks exactly like a change that never shipped. **Bump the stamp in every page
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
 
 ## Running locally
