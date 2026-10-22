@@ -54,8 +54,7 @@ section{padding:88px 0}
      transition:background-color .15s ease,filter .15s ease}
 .btn-primary{background:#fff;color:var(--navy)}
 .btn-primary:hover{background:var(--tint)}
-.band .btn-primary,form .btn-primary{background:var(--grad);color:#fff}
-form .btn-primary:hover{filter:brightness(1.12)}
+.band .btn-primary{background:var(--grad);color:#fff}
 .btn-ghost{border-color:currentColor;color:#fff;background:transparent}
 .btn-ghost:hover{background:rgba(255,255,255,.12)}
 
@@ -215,17 +214,10 @@ header{background:#fff;color:var(--navy);position:sticky;top:0;z-index:30;
 .quote p{color:#d9e6f8;max-width:46ch}
 .quote .contact{margin-top:32px;font-size:17px;line-height:1.8}
 .quote .contact a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
-form{background:#fff;color:var(--ink);padding:32px;border-radius:4px;display:grid;gap:18px}
-label{font-weight:600;font-size:15px;display:block;margin-bottom:6px}
-input,select,textarea{width:100%;font:inherit;padding:12px 14px;border:1px solid #b9c4c7;border-radius:3px;background:#fff;color:inherit}
-textarea{min-height:110px;resize:vertical}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-form .btn{justify-self:start}
-.form-note{font-size:14px;color:var(--meta)}
-.form-status{font-size:16px;font-weight:600;color:var(--blue)}
-.form-status:empty{display:none}
+.quote-embed{background:#fff;color:var(--ink);padding:16px;border-radius:4px;min-width:0}
+.quote-embed iframe{display:block;width:100%;max-width:100%;border:0}
 @media (max-width:900px){.quote .wrap{grid-template-columns:1fr;gap:36px}}
-@media (max-width:560px){.row{grid-template-columns:1fr}form{padding:24px 20px}}
+@media (max-width:560px){.quote-embed{padding:8px}}
 
 /* ---------- footer ---------- */
 footer{background:var(--navy);color:#a9bfdc;padding:48px 0 32px;font-size:15px}
