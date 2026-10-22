@@ -651,3 +651,29 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 /* three cards across instead of two */
 .area-cards.cols-3{grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){.area-cards.cols-3{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   Articles: one column of running copy under a single-column page hero
+   ========================================================================== */
+.article-hero .wrap{grid-template-columns:1fr}
+.article-hero .lede{max-width:60ch}
+.prose{padding:72px 0 88px}
+.prose .wrap{max-width:calc(760px + 2 * var(--gutter))}
+.prose p,.prose li{color:var(--muted)}
+.prose p + p{margin-top:16px}
+.prose h2{font-size:clamp(30px,4vw,42px);margin:56px 0 18px}
+.prose h3{color:var(--navy);margin:36px 0 12px}
+.prose ul{margin:16px 0 0 20px}
+.prose li{padding:4px 0}
+.prose li b{color:var(--ink)}
+.prose a{color:var(--blue)}
+.prose ul + p{margin-top:16px}
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+.versus > div{background:var(--grad) top / 100% 5px no-repeat,var(--tint);border:1px solid var(--line);padding:24px 22px 18px}
+.versus h3{margin:0 0 4px;font-size:24px}
+.versus ul{list-style:none;margin:0}
+.versus li{font-size:16px;padding:10px 0}
+.versus li + li{border-top:1px solid var(--line)}
+@media (max-width:640px){.prose{padding:52px 0 64px}.versus{grid-template-columns:1fr}}
+#plan .lede + .lede{margin-top:16px}
+#plan .lede a{color:var(--blue)}
