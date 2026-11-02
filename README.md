@@ -231,7 +231,7 @@ Search the source for `TODO`. In rough order of how much it matters:
 
 - **Phone numbers and email.** The quote sections list `(270) 869-5580` (Tristan Hagan); Jake's
   line was removed. Also recovered from search results rather than read off
-  `barhsolutions.com/contact` — confirm before publishing. The `info@barhsolutions.com` address
+  `barhsolutions.com/contact` — confirm before publishing. The `thagan@barhsolutions.com` address
   is still a stand-in.
 - **Series specifications.** The spec tables are written to stay true for any build ("chosen at
   order", "specified per site"). Replace them with the real numbers — roof panel gauge and
