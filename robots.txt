@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://barhsolutions.com/sitemap.xml
