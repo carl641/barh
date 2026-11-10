@@ -15,6 +15,12 @@ land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
 aluminum-vs-wood-docks-providence-ky.html
                                 article: aluminum vs. wood docks, aimed at Providence, KY
+ohio-river-valley/              city pages nested under their area page:
+  boat-dock-builders-{evansville-in,owensboro-ky,henderson-ky,vincennes-in}.html
+middle-tennessee-corridor/
+  boat-dock-builders-{nashville-tn,clarksville-tn,hopkinsville-ky,madisonville-ky}.html
+land-between-the-lakes/
+  boat-dock-builders-{murray-ky,paris-tn}.html
 assets/css/styles.css           all styles (design tokens at the top)
 assets/js/main.js               mobile nav, nav dropdowns, standard features, build rotator, quote form, footer year
 assets/img/                     logo, favicon, photography
@@ -51,7 +57,7 @@ when another opens. The second caret makes the desktop row about 25px wider. Wit
 still fits at 901px (26px to spare), but on the fallback fonts it wraps there, so between 901px and
 1020px the nav's gaps tighten from 28px to 20px.
 
-`styles.css` and `main.js` are linked with a `?v=` stamp (`?v=20261022b`). There is no build step
+`styles.css` and `main.js` are linked with a `?v=` stamp (`styles.css?v=20261110a`, `main.js?v=20261022b`). There is no build step
 to hash filenames, so browsers and CDNs will happily serve a cached stylesheet for days after a
 deploy — which looks exactly like a change that never shipped. **Bump the stamp in every page
 whenever you edit the CSS or JS**, or returning visitors keep the old layout.
@@ -219,6 +225,28 @@ it.
 
 Design tokens (brand navy/blue, fonts, max width) live in `:root` at the top of
 `styles.css`; change them there rather than in individual rules.
+
+**City pages** ("boat dock builders in <city>") sit one folder down from their area page, so
+`/ohio-river-valley` is the parent of `/ohio-river-valley/boat-dock-builders-evansville-in`. Each
+shares one structure — hero (four-level breadcrumb, chips, the water around that town) → the water
+→ planning a dock there (`#planning`, reusing `.commercial` and `.checks`) → which dock fits →
+FAQ → nearby cities in the same area → quote form → footer — but the copy is written per town:
+who regulates that water, how it behaves, and what an owner there should settle first. Each
+carries `Service`, `BreadcrumbList` and `FAQPage` JSON-LD. Because they are one level deep, every
+asset and page link in them starts with `../`. The area pages link to them from a
+`#cities` band and from the town names in the hero panel; the homepage `#areas` lists and every
+footer link to them too. Madisonville is filed under the Clarksville–Nashville corridor because
+that area page lists it.
+
+Like the area pages, each water section carries an HTML comment naming the facts to re-check
+(gauge figures, lake levels, agency names, local place names). Two things to confirm with Bar H
+in particular: the **Nashville** page presumes they build on the Corps lakes around Nashville, which
+the area-page copy deliberately left open, and none of the pages say whether Bar H files permits —
+they only say which agencies are involved.
+
+On Apache, `/ohio-river-valley` now names both a file (`ohio-river-valley.html`) and a folder. The
+rewrite in `.htaccess` serves the file before `mod_dir` can add a trailing slash; if a host ever
+redirects it to `/ohio-river-valley/`, add `DirectorySlash Off`.
 
 ## Before this goes live
 

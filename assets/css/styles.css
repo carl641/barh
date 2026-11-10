@@ -680,3 +680,17 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 @media (max-width:640px){.prose{padding:52px 0 64px}.versus{grid-template-columns:1fr}}
 #plan .lede + .lede{margin-top:16px}
 #plan .lede a{color:var(--blue)}
+
+/* ==========================================================================
+   City pages (e.g. ohio-river-valley/boat-dock-builders-evansville-in) and the
+   town lists that link to them
+   ========================================================================== */
+/* a town with its own page is a link in the area hero panel and the homepage
+   #areas lists; underlined so it reads as one next to the towns that are not */
+.town-groups a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+.town-groups a:hover{border-bottom-color:#fff}
+.areas li a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(30,111,217,.35)}
+.areas li a:hover{border-bottom-color:var(--blue)}
+/* the planning band reuses .commercial's two-column layout; its button sits
+   under the lede rather than in a hero */
+#planning .lede + .btn{margin-top:4px}
