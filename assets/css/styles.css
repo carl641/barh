@@ -696,3 +696,6 @@ table.spec caption{text-align:left;font-size:15px;color:var(--meta);padding-bott
 /* the planning band reuses .commercial's two-column layout; its button sits
    under the lede rather than in a hero */
 #planning .lede + .btn{margin-top:4px}
+
+/* Blog index: article cards reuse .area-cards, with the publish date on top */
+.post-cards time{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--meta)}

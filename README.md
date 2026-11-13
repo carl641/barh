@@ -13,6 +13,7 @@ steel-docks.html                steel dock, the budget option (steel tube trusse
 ohio-river-valley.html          area page: Henderson, Evansville, Owensboro and the Ohio River towns
 land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
+blog.html                       blog index: cards linking to every article (newest first)
 aluminum-vs-wood-docks-providence-ky.html
                                 article: aluminum vs. wood docks, aimed at Providence, KY
 shared-dock-planning-hoa-marina.html
