@@ -15,6 +15,8 @@ land-between-the-lakes.html     area page: Kentucky Lake & Lake Barkley towns
 middle-tennessee-corridor.html  area page: Clarksville–Nashville corridor towns
 aluminum-vs-wood-docks-providence-ky.html
                                 article: aluminum vs. wood docks, aimed at Providence, KY
+shared-dock-planning-hoa-marina.html
+                                article: planning a shared dock, for HOAs and marinas
 ohio-river-valley/              city pages nested under their area page:
   boat-dock-builders-{evansville-in,owensboro-ky,henderson-ky,vincennes-in}.html
 middle-tennessee-corridor/
